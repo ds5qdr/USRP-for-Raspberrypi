@@ -1,0 +1,54 @@
+UPDATE_CK : 2021-03-29 14:57:42 > 1616997462
+UPDATE_OK : 2021-03-29 14:57:42 > 1616997462
+STDBY : 450   :        : DS3DIF 
+EMPTY : 45021 :        : 
+STDBY : 45022 :        : DS3DIF 
+EMPTY : 45023 :        : 
+EMPTY : 45024 :        : 
+EMPTY : 45025 :        : 
+EMPTY : 45026 :        : 
+EMPTY : 45027 :        : 
+EMPTY : 45028 :        : 
+EMPTY : 45029 :        : 
+EMPTY : 45030 :        : 
+EMPTY : 45031 :        : 
+EMPTY : 45032 :        : 
+EMPTY : 45033 :        : 
+EMPTY : 45034 :        : 
+EMPTY : 45035 :        : 
+EMPTY : 45036 :        : 
+EMPTY : 45037 :        : 
+EMPTY : 45038 :        : 
+EMPTY : 45039 :        : 
+EMPTY : 518   :        : 
+EMPTY : 815   :        : 
+EMPTY : 842   :        : 
+EMPTY : 843   :        : 
+EMPTY : 844   :        : 
+STDBY : 91    :        : KB7ZZ  VK4KU  HL5BBD        
+STDBY : 3100  :        : K7COY  KB7HTA N0SV   
+EMPTY : 45021 :        : 
+STDBY : 45022 :        : DS3DIF 
+EMPTY : 45023 :        : 
+EMPTY : 45024 :        : 
+EMPTY : 45025 :        : 
+EMPTY : 45026 :        : 
+EMPTY : 45027 :        : 
+EMPTY : 45028 :        : 
+EMPTY : 45029 :        : 
+EMPTY : 45030 :        : 
+EMPTY : 45031 :        : 
+EMPTY : 45032 :        : 
+EMPTY : 45033 :        : 
+EMPTY : 45034 :        : 
+EMPTY : 45035 :        : 
+EMPTY : 45036 :        : 
+EMPTY : 45037 :        : 
+EMPTY : 45038 :        : 
+EMPTY : 45039 :        : 
+EMPTY : 518   :        : 
+EMPTY : 842   :        : 
+EMPTY : 843   :        : 
+EMPTY : 844   :        : 
+STDBY : 91    :        : KB7ZZ  VK4KU  HL5BBD        
+STDBY : 3100  :        : K7COY  KB7HTA N0SV   
