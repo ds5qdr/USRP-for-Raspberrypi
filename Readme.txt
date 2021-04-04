@@ -1,8 +1,6 @@
 DVSwitch USRP Client for RaspberryPi
 
 This Program is modified and compiled pyUC.py (DVSwitch Client USRP) by DS5QDR
-https://github.com/DVSwitch/USRP_Client
-
 
 
 최신버젼
@@ -10,7 +8,6 @@ https://github.com/DVSwitch/USRP_Client
 
 
 사용설명서 (Windows 버젼과 동일)
-https://ds5qdr-dv.tistory.com/214
 
 
 추천 Hardware 사양
