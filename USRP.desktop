@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=USRP
+Path=/home/pi/USRP
+Exec=/home/pi/USRP/USRP
+Terminal=false
+Icon=/home/pi/USRP/USRP.jpg
