@@ -23,24 +23,24 @@ https://ds5qdr-dv.tistory.com/214
 
 
 
-설치 방법
-echo Download USRP for Raspberrypi files from github
-sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
-cd USRP
+설치 방법 (아래 명령어 한줄씩 실행하세요)
+- echo Download USRP for Raspberrypi files from github
+- sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
+- cd USRP
 
-echo Unzip files 
-zip -s 0 USRP_2.00.zip --out USRP.zip
-unzip USRP.zip
-sudo rm USRP.zip USRP_2.00.zip USRP_2.00.z01
+- echo Unzip files 
+- zip -s 0 USRP_2.00.zip --out USRP.zip
+- unzip USRP.zip
+- sudo rm USRP.zip USRP_2.00.zip USRP_2.00.z01
 
-echo Setting 
-sudo chmod +x USRP dmr_status
-sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
-sudo mv dvpi dvpi.jpg /home/pi/dvpi/
-sudo mv dvpi.desktop USRP.desktop /home/pi/desktop
+- echo Setting 
+- sudo chmod +x USRP dmr_status
+- sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
+- sudo mv dvpi dvpi.jpg /home/pi/dvpi/
+- sudo mv dvpi.desktop USRP.desktop /home/pi/desktop
 
-echo reboot
-sudo reboot 
+- echo reboot
+- sudo reboot 
 
 
 
