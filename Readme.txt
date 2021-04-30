@@ -35,7 +35,7 @@ echo reboot
 sudo reboot 
 
 
-사용방법 아래 링크 참고하세요
+설치방법 아래 링크 참고하세요
 https://ds5qdr-dv.tistory.com/218
 
 
