@@ -25,6 +25,7 @@ sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
 cd USRP
 
 echo Setting 
+sudo chown pi:pi *
 sudo chmod +x USRP dmr_status
 sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
 sudo mv dvpi dvpi.jpg /home/pi/dvpi/
