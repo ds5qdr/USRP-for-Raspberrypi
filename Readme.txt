@@ -4,15 +4,12 @@ This Program is modified and compiled pyUC.py (DVSwitch Client USRP) by DS5QDR
 https://github.com/DVSwitch/USRP_Client
 
 
-
 최신버젼
 2021.04.01 V2.05 : 일부 오류 개선
 
 
-
 사용설명서 (Windows 버젼과 동일)
 https://ds5qdr-dv.tistory.com/214
-
 
 
 추천 Hardware 사양
@@ -22,26 +19,23 @@ https://ds5qdr-dv.tistory.com/214
 - DVPi 시스템과 100% 호환
 
 
-
 설치 방법 (아래 명령어 한줄씩 실행하세요)
-- echo Download USRP for Raspberrypi files from github
-- sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
-- cd USRP
+echo Download USRP for Raspberrypi files from github
+sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
+cd USRP
 
-- echo Unzip files 
-- zip -s 0 USRP_2.00.zip --out USRP.zip
-- unzip USRP.zip
-- sudo rm USRP.zip USRP_2.00.zip USRP_2.00.z01
+echo Setting 
+sudo chmod +x USRP dmr_status
+sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
+sudo mv dvpi dvpi.jpg /home/pi/dvpi/
+sudo mv dvpi.desktop USRP.desktop /home/pi/desktop
 
-- echo Setting 
-- sudo chmod +x USRP dmr_status
-- sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
-- sudo mv dvpi dvpi.jpg /home/pi/dvpi/
-- sudo mv dvpi.desktop USRP.desktop /home/pi/desktop
+echo reboot
+sudo reboot 
 
-- echo reboot
-- sudo reboot 
 
+사용방법 아래 링크 참고하세요
+https://ds5qdr-dv.tistory.com/218
 
 
 공개 이력
