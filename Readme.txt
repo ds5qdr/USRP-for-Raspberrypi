@@ -45,6 +45,7 @@ https://ds5qdr-dv.tistory.com/218
 2021.02.01 V1.80 : DMR TG Status 기능 추가
 2021.02.15 V1.90 : 기존 DMR, DSTAR 에 NXDN, P@%, YSF Mode 추가 지원
 2021.03.24 V2.00 : DVSwitch Web 버젼 hUC All Mode 지원 (STFU, Intercom, ASL Mode)
+2021.04.30 V2.20 : Remote DVS Restart, TG/REF List 자동 다운로드 및 DVS 설정 기능 추가 (진행중) 
 
 
 DS5QDR Lee, Heonmin
