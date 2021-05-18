@@ -4,22 +4,26 @@ This Program is modified and compiled pyUC.py (DVSwitch Client USRP) by DS5QDR
 https://github.com/DVSwitch/USRP_Client
 
 
-최신버젼
-2021.04.01 V2.05 : 일부 오류 개선
+Newest Version
+2021.05.18 V2.30
 
 
-사용설명서 (Windows 버젼과 동일)
+Manual (Comartable with Windows version)
 https://ds5qdr-dv.tistory.com/214
 
 
-추천 Hardware 사양
-- RaspberryPi 3B 이상
+Hardware 
+- RaspberryPi 3B 4B
 - USB Sound Card
-- 3.5 Inch LCD 이상 (GPIO, HDMI 모두 지원)
-- DVPi 시스템과 100% 호환
+- 3.5 inch LCD 이상 (GPIO, HDMI any)
+- Compartable with DVPi system
 
 
-설치 방법 (아래 명령어 한줄씩 실행하세요)
+How to setup
+
+----------------------------------------------------------------------
+for DVPi system
+
 echo Download USRP for Raspberrypi files from github
 sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
 cd USRP
@@ -34,8 +38,34 @@ sudo mv dvpi.desktop USRP.desktop /home/pi/desktop
 echo reboot
 sudo reboot 
 
+------------------------------------------------------------------------
+for Debian or Rasbian system
 
-설치방법 아래 링크 참고하세요
+echo Download USRP for Raspberrypi files from github
+sudo git clone https://github.com/ds5qdr/USRP-for-Raspberrypi USRP
+cd USRP
+
+echo Setting 
+sudo chown pi:pi *
+sudo chmod +x USRP dmr_status
+sudo mv USRP.desktop /home/pi/desktop
+
+echo reboot
+sudo reboot
+
+
+------------------------------------------------------------------------
+and then You can find USRP icon on Desktop windows of Rasbian.
+click USRP !
+
+or open terminal and then
+cd USRP
+./USRP
+
+
+
+
+for more information go to below site!
 https://ds5qdr-dv.tistory.com/218
 
 
