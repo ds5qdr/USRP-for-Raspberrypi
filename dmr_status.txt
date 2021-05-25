@@ -1,8 +1,8 @@
-DVSwitch :  : 20:10:32 : 1621336232 : 2021.05.18. 17:30
-Monitor :   : 20-10-34 : 1621336234 : 2021.05.15. 00:00
-STDBY : 450   :        : DS1EOV        DS4AEZ  : 
+DVSwitch :  : 00:55:41 : 1621007741 : 2021.05.15. 00:30
+Monitor :   : 00-55-41 : 1621007741 : 2021.05.15. 00:00
+EMPTY : 450   :        :  : 
 EMPTY : 45021 :        :  : 
-ONAIR : 45022 : HL5FHN : HL3GHJ  : 
+EMPTY : 45022 :        :  : 
 EMPTY : 45023 :        :  : 
 EMPTY : 45024 :        :  : 
 EMPTY : 45025 :        :  : 
@@ -16,10 +16,10 @@ EMPTY : 45032 :        :  :
 EMPTY : 45033 :        :  : 
 EMPTY : 45034 :        :  : 
 EMPTY : 45035 :        :  : 
-STDBY : 45036 :        : DS4OVT HL4GBD  : 
+EMPTY : 45036 :        :  : 
 EMPTY : 45037 :        :  : 
 EMPTY : 45038 :        :  : 
 EMPTY : 45039 :        :  : 
-ONAIR : 91    : GW4PAF : VK5EKH MM6DUV N7EKB  IW2CCU HJ6MRF ZS6STE G0BIA  EA6QJ  DL6LAG  : 
-STDBY : 93    :        : VA3KY  E25ILU KB3ZYD KG5QVV I0RNK   : 
+STDBY : 91    :        :        KI6MGX G4KDU  WB0VAO DL3MBK M6GCJ  W7RCW  KG5FRH KE0BVQ OH3MYI  : 
+STDBY : 93    :        : N9MKF   : 
 Copyright :   :        : Brandmeister DMR Monitor V1.1 by VK2CYO : & modified by DS5QDR 
