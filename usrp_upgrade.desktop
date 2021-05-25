@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=USRP UPGRADE
+Path=/home/pi/
+Exec=/home/pi/usrp_upgrade
+Terminal=false
+Icon=/home/pi/usrp_upgrade.jpg
