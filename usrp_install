@@ -1,0 +1,34 @@
+######################################################
+SCRIPT_VERSION="USRP Install V1.00"                  #
+SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
+SCRIPT_DATE="05/21/2021"                             #
+######################################################
+
+eche
+echo download USRP from github
+clear
+cd /home/pi/
+sudo rm -rf USRP
+sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
+git clone https://github.com/ds5qdr/USRP_update.git USRP
+
+echo
+echo copy usrp_start usrp_
+cd USRP
+sudo chmod +x USRP dmr_status usrp_start usrp_upgrade usrp_install
+sudo chown pi:pi *
+sudo mv usrp_start   /home/pi/
+sudo mv usrp_upgrade /home/pi/
+sudo mv autostart    /etc/xdg/lxsession/LXDE-pi/
+sudo mv *.jpg        /home/pi/
+sudo mv *.desktop    /home/pi/Desktop/
+sudo mv config.txt   /boot/
+sudo mv usrp_install /home/pi/
+sudo rm README.md
+
+echo
+echo reboot USRP
+sudo reboot
+
+# echo start USRP
+# /home/pi/usrp_start
