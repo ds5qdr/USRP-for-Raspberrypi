@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=DVPi
-Path=/home/pi/dvpi
-Exec=/home/pi/dvpi/dvpi_go
-Terminal=false
-Icon=/home/pi/dvpi/dvpi.jpg
