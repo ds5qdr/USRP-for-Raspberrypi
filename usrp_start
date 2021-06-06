@@ -1,12 +1,12 @@
 ######################################################
-SCRIPT_VERSION="Start USRP V1.00"                    #
+SCRIPT_VERSION="Start USRP V1.10"                    #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="05/23/2021"                             #
+SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
-echo kill dmr_status, USRP
-kill `ps -ef | grep 'dmr_status' | grep -v 'grep' | awk '{print $2}'` 
-kill `ps -ef | grep 'USRP'       | grep -v 'grep' | awk '{print $2}'` 
+echo kill USRP
+kill `ps -ef | grep 'USRP' | grep -v 'grep' | awk '{print $2}'` 
+echo USRP killed
 
 echo run USRP
 cd /home/pi/USRP
