@@ -1,7 +1,7 @@
 ######################################################
-SCRIPT_VERSION="upgrade USRP V0.99"                  #
+SCRIPT_VERSION="upgrade USRP V1.00"                  #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="05/20/2021"                             #
+SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
 echo
@@ -9,6 +9,7 @@ echo download USRP from github
 clear
 cd /home/pi/USRP
 sudo rm -rf tmp
+sudo rm /home/pi/USRP/dmr_status*
 sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_usrp
 git clone https://github.com/ds5qdr/USRP_update.git tmp
 
@@ -17,8 +18,6 @@ echo copy USRP dmr_status
 sudo chmod +x tmp/USRP tmp/dmr_status tmp/usrp_start tmp/usrp_upgrade
 sudo chown pi:pi *
 sudo mv  tmp/USRP           .
-sudo mv  tmp/dmr_status     .
-sudo mv  tmp/dmr_status.txt .
 sudo chown pi:pi *
 sudo mv  tmp/usrp_start   /home/pi/
 sudo mv  tmp/upgrade_usrp /home/pi/
@@ -36,12 +35,9 @@ cd /home/pi
 sudo chown pi:pi *
 
 echo
-echo kill USRP & dmr_status
+echo kill USRP
 sudo kill `ps -ef | grep "USRP"       | grep -v 'grep' | awk '{print $2}'` 
 echo USRP killed
-echo
-sudo kill `ps -ef | grep "dmr_status" | grep -v 'grep' | awk '{print $2}'` 
-echo dmr_status killed
 
 echo
 echo restart USRP
