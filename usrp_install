@@ -1,7 +1,7 @@
 ######################################################
-SCRIPT_VERSION="USRP Install V1.00"                  #
+SCRIPT_VERSION="USRP Install V1.10"                  #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="05/21/2021"                             #
+SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
 eche
@@ -13,9 +13,9 @@ sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
 git clone https://github.com/ds5qdr/USRP_update.git USRP
 
 echo
-echo copy usrp_start usrp_
+echo copy usrp_start usrp_upgrade usrp_install
 cd USRP
-sudo chmod +x USRP dmr_status usrp_start usrp_upgrade usrp_install
+sudo chmod +x USRP usrp_start usrp_upgrade usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
 sudo mv usrp_upgrade /home/pi/
@@ -30,5 +30,3 @@ echo
 echo reboot USRP
 sudo reboot
 
-# echo start USRP
-# /home/pi/usrp_start
