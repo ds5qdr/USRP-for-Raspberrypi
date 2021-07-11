@@ -1,4 +1,5 @@
 # USRP_Install_Update
+# This git is not available, go to https://github.com/ds5qdr/USRP_update
 on-line update USRP
 This github is created for download USRP Program from Github to USRP system (Raspberry).
 
