@@ -2,10 +2,6 @@
 # This git is not available, go to https://github.com/ds5qdr/USRP_update
 # This git is not available, go to https://github.com/ds5qdr/USRP_update
 # This git is not available, go to https://github.com/ds5qdr/USRP_update
-# This git is not available, go to https://github.com/ds5qdr/USRP_update
-# This git is not available, go to https://github.com/ds5qdr/USRP_update
-# This git is not available, go to https://github.com/ds5qdr/USRP_update
-
 
 
 on-line update USRP
