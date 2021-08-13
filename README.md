@@ -1,11 +1,11 @@
-# USRP_Install_Update
-# This git is not available, go to https://github.com/ds5qdr/USRP_update
-# This git is not available, go to https://github.com/ds5qdr/USRP_update
-# This git is not available, go to https://github.com/ds5qdr/USRP_update
-
-
+# USRP_for_Raspberrypi
+- Version : V2.81
+- Updated Date : 2021.08.13
+- Programmed by DS5QDR Lee, Hoenmin
 
 # How to install 
+
+
 
   
 
