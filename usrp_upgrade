@@ -4,30 +4,30 @@ SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
 SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
+clear
 echo
 echo download USRP from github
-clear
 cd /home/pi/USRP
-sudo rm -rf tmp
-sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_usrp
+sudo rm -rf /home/pi/USRP/tmp
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git tmp
 
 echo
-echo copy  USRP chown
-sudo chmod +x tmp/USRP tmp/dmr_status tmp/usrp_start tmp/usrp_upgrade
+echo copy USRP 
+sudo chmod +x tmp/USRP tmp/usrp_start tmp/usrp_upgrade
 sudo chown pi:pi *
-sudo mv    tmp/USRP         /home/pi/USRP  .
-sudo mv    tmp/*.csv        /Home/pi/USRP
-sudo chown pi:pi            /home/pi/USRP/USRP
-sudo mv    tmp/usrp_start   /home/pi/
-sudo mv    tmp/upgrade_usrp /home/pi/
-sudo mv    tmp/autostart    /etc/xdg/lxsession/LXDE-pi/
-sudo mv    tmp/*.jpg        /home/pi/
-sudo mv    tmp/*.desktop    /home/pi/Desktop/
+sudo mv tmp/USRP .
+sudo mv tmp/user_d.csv .
+sudo mv tmp/usrp_start   /home/pi/
+sudo mv tmp/usrp_upgrade /home/pi/
+sudo mv tmp/autostart    /etc/xdg/lxsession/LXDE-pi/
+sudo mv tmp/*.jpg        /home/pi/
+sudo mv tmp/*.desktop    /home/pi/Desktop/
 
 echo
-echo remove tmp directory
+echo remove tmp directory and dmr_status*
 sudo rm -rf tmp
+sudo rm /home/pi/USRP/dmr_status*
+sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_usrp
 
 echo
 echo change ownership
@@ -36,7 +36,7 @@ sudo chown pi:pi *
 
 echo
 echo kill USRP
-sudo kill `ps -ef | grep "USRP"       | grep -v 'grep' | awk '{print $2}'` 
+sudo kill `ps -ef | grep "USRP" | grep -v 'grep' | awk '{print $2}'` 
 echo USRP killed
 
 echo
