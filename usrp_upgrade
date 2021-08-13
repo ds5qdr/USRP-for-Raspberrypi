@@ -14,16 +14,17 @@ sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_usrp
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git tmp
 
 echo
-echo copy USRP dmr_status
+echo copy  USRP chown
 sudo chmod +x tmp/USRP tmp/dmr_status tmp/usrp_start tmp/usrp_upgrade
 sudo chown pi:pi *
-sudo mv  tmp/USRP           .
-sudo chown pi:pi *
-sudo mv  tmp/usrp_start   /home/pi/
-sudo mv  tmp/upgrade_usrp /home/pi/
-sudo mv  tmp/autostart    /etc/xdg/lxsession/LXDE-pi/
-sudo mv  tmp/*.jpg        /home/pi/
-sudo mv  tmp/*.desktop    /home/pi/Desktop/
+sudo mv    tmp/USRP         /home/pi/USRP  .
+sudo mv    tmp/*.csv        /Home/pi/USRP
+sudo chown pi:pi            /home/pi/USRP/USRP/USRP
+sudo mv    tmp/usrp_start   /home/pi/
+sudo mv    tmp/upgrade_usrp /home/pi/
+sudo mv    tmp/autostart    /etc/xdg/lxsession/LXDE-pi/
+sudo mv    tmp/*.jpg        /home/pi/
+sudo mv    tmp/*.desktop    /home/pi/Desktop/
 
 echo
 echo remove tmp directory
