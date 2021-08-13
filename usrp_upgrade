@@ -9,7 +9,6 @@ echo download USRP from github
 clear
 cd /home/pi/USRP
 sudo rm -rf tmp
-sudo rm /home/pi/USRP/dmr_status*
 sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_usrp
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git tmp
 
