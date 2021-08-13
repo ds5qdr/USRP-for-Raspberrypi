@@ -10,7 +10,7 @@ clear
 cd /home/pi/
 sudo rm -rf USRP
 sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
-git clone https://github.com/ds5qdr/USRP_update.git USRP
+git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo
 echo copy usrp_start usrp_upgrade usrp_install
