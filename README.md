@@ -4,10 +4,9 @@
 - Programmed by DS5QDR Lee, Hoenmin
 
 # How to install 
-
-
-
-  
+- wget http://ds5qdr-dvs.iptime.org/usrp_install
+- sudo chmod +x usrp_install
+- ./usrp_install 
 
 # How to update
 
