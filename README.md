@@ -20,7 +20,12 @@
 - to install, click 'Server' tab
 - enter DVSwitch IP address, login ID and PW and then click 'install'
 
+# for more information
+- click here, https://ds5qdr-dv.tistory.com/224
+
 DS5QDR Lee, Heonmin
 
 ![image](https://user-images.githubusercontent.com/64110724/129439417-da88633c-1f49-4744-ad14-89e6ed44eb68.png)
+![image](https://user-images.githubusercontent.com/64110724/129439515-706fb468-88c0-4ae9-8df7-2b9cf832451a.png)
+![image](https://user-images.githubusercontent.com/64110724/129439571-aaa1a5e0-25fe-4f3e-bad2-e7906a455fa6.png)
 
