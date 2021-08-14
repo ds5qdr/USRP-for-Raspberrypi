@@ -19,6 +19,8 @@
 - If you want to use full fucntion you have to install usrp2dvs program at your DVSwitch server
 - to install, click 'Server' tab
 - enter DVSwitch IP address, login ID and PW and then click 'install'
+- After install, you must open portforwad UDP Port at your internet router.
+- UDP Port is Analog_Bridge.ini [USRP] section tx/rxPort + 1  ex) tx/rxPort = 50000 UDP Port is 50001
 
 # for more information
 - click here, https://ds5qdr-dv.tistory.com/224
