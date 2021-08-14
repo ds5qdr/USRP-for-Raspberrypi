@@ -9,9 +9,18 @@
 - ./usrp_install 
 
 # How to update
+- click 'Control' tab of USRP, click 'Upgrade USRP' button!
 
+# Warning
+- Don't install Pulseaudio, it makes R2D2 at Rx/Tx
+- Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
 
+# usrp2dvs 
+- If you want to use full fucntion you have to install usrp2dvs program at your DVSwitch server
+- to install, click 'Server' tab
+- enter DVSwitch IP address, login ID and PW and then click 'install'
 
 DS5QDR Lee, Heonmin
 
-![image](https://user-images.githubusercontent.com/64110724/117846280-4075f480-b2bc-11eb-9779-f75359d5cf1e.png)
+![image](https://user-images.githubusercontent.com/64110724/129439417-da88633c-1f49-4744-ad14-89e6ed44eb68.png)
+
