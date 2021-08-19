@@ -20,9 +20,9 @@ sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
 sudo mv usrp_upgrade /home/pi/
 sudo mv usrp_install /home/pi/
-sudo mv autostart    /etc/xdg/lxsession/LXDE-pi/
 sudo mv *.jpg        /home/pi/
 sudo mv *.desktop    /home/pi/Desktop/
+sudo mv autostart    /etc/xdg/lxsession/LXDE-pi/
 sudo mv config.txt   /boot/
 sudo rm README.md
 
