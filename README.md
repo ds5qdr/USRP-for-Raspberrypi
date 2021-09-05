@@ -1,6 +1,6 @@
 # USRP_for_Raspberrypi
-- Version : V2.90
-- Updated Date : 2021.08.28
+- Version : V2.91
+- Updated Date : 2021.09.05
 - Programmed by DS5QDR Lee, Hoenmin
 
 # How to install 
