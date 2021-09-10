@@ -5,4 +5,4 @@ Name=USRP
 Path=/home/pi/USRP
 Exec=/home/pi/USRP/USRP
 Terminal=false
-Icon=/home/pi/usrp.jpg
+Icon=/home/pi/USRP.jpg
