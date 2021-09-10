@@ -4,7 +4,7 @@ SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
 SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
-eche
+echo
 echo download USRP from github
 clear
 cd /home/pi/
