@@ -24,9 +24,7 @@
 
 # modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt
-- add 7 lines as below
--     hdmi_force_hotplug=1
--     #max_usb_current=1
+- add 5 lines as below
 -     hdmi_group=2
 -     hdmi_mode=1
 -     hdmi_mode=87
