@@ -25,13 +25,13 @@
 # modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt
 - add 7 lines as below
-> hdmi_force_hotplug=1
-> #max_usb_current=1
-> hdmi_group=2
-> hdmi_mode=1
-> hdmi_mode=87
-> hdmi_cvt 800 480 60 6 0 0 0
-> hdmi_drive=2
+-     hdmi_force_hotplug=1
+-     #max_usb_current=1
+-     hdmi_group=2
+-     hdmi_mode=1
+-     hdmi_mode=87
+-     hdmi_cvt 800 480 60 6 0 0 0
+-     hdmi_drive=2
 
 # usrp2dvs 
 - If you want to use full fucntion you have to install usrp2dvs program at your DVSwitch server
