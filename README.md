@@ -24,7 +24,7 @@
 
 # modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt
-- add 5 lines as below
+- add 5 lines at the end of config.txt
 - hdmi_group=2
 - hdmi_mode=1
 - hdmi_mode=87
