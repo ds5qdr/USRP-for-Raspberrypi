@@ -14,6 +14,8 @@
 # Warning
 - Don't install Pulseaudio, it makes R2D2 at Rx/Tx
 - Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
+- to remove Pulseaudio 
+- sudo apt purge pulseaudio
 
 # usrp2dvs 
 - If you want to use full fucntion you have to install usrp2dvs program at your DVSwitch server
