@@ -4,12 +4,12 @@ SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
 SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
-eche
+echo
 echo download USRP from github
 clear
 cd /home/pi/
 sudo rm -rf USRP
-sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
+# sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_go
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo

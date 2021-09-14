@@ -14,6 +14,22 @@
 # Warning
 - Don't install Pulseaudio, it makes R2D2 at Rx/Tx
 - Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
+- to remove Pulseaudio 
+- sudo apt purge pulseaudio
+
+# Other Audio setting
+- sudo nano /usr/share/alsa/alsa.conf
+- defaults.ctl.card 0 ---> 2
+- defaults.pcm.card 0 ---> 2
+
+# modify /boot/config.txt to match Video resolution
+- sudo nano /boot/config.txt
+- add 5 lines at the end of config.txt
+- hdmi_group=2
+- hdmi_mode=1
+- hdmi_mode=87
+- hdmi_cvt 800 480 60 6 0 0 0
+- hdmi_drive=2
 
 # usrp2dvs 
 - If you want to use full fucntion you have to install usrp2dvs program at your DVSwitch server
