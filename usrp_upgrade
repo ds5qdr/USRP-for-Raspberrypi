@@ -24,10 +24,8 @@ sudo mv tmp/*.jpg        /home/pi/
 sudo mv tmp/*.desktop    /home/pi/Desktop/
 
 echo
-echo remove tmp directory and dmr_status*
+echo remove tmp directory 
 sudo rm -rf tmp
-sudo rm /home/pi/USRP/dmr_status*
-sudo mv /home/pi/dvpi/dvpi /home/pi/dvpi/dvpi_usrp
 
 echo
 echo change ownership
