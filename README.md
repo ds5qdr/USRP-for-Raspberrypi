@@ -12,7 +12,7 @@
 - click 'Control' tab of USRP, click 'Upgrade USRP' button!
 
 # Warning
-- Don't install Pulseaudio, it makes R2D2 at Rx/Tx
+- Don't install Pulseaudio, it makes R2D2 when Rx/Tx transmit
 - Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
 - to remove Pulseaudio 
 - sudo apt purge pulseaudio
