@@ -65,7 +65,7 @@
 
 # DS5QDR Lee, Heonmin
 
-![image](https://user-images.githubusercontent.com/64110724/129439417-da88633c-1f49-4744-ad14-89e6ed44eb68.png)
+![image](https://user-images.githubusercontent.com/64110724/134379674-5fa1f607-64ad-40fb-9909-cfedb49b3076.png)
 ![image](https://user-images.githubusercontent.com/64110724/129439515-706fb468-88c0-4ae9-8df7-2b9cf832451a.png)
 ![image](https://user-images.githubusercontent.com/64110724/129439571-aaa1a5e0-25fe-4f3e-bad2-e7906a455fa6.png)
 
