@@ -1,10 +1,10 @@
 # USRP_for_Raspberrypi
-- Version : V2.974
-- Updated Date : 2021.09.29
+- Version : V3.00
+- Updated Date : 2021.10.09
 - Programmed by DS5QDR Lee, Hoenmin
 
 # How to install 
-- wget http://ds5qdr-dvs.iptime.org/usrp/usrp_install
+- wget http://xlx841ysf.duckdns.org/usrp/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
 
@@ -45,7 +45,7 @@
 - If you use the version before V2.95, Please reconfigure the usrp.ini file.
 
 
-# usrp2dvs 
+# usrp2dvs (Option)
 - If you want to use full fucntion you have to install usrp2dvs program at your DVSwitch server
 - to install, click 'Server' tab
 - enter DVSwitch IP address, login ID and PW and then click 'install'
