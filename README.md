@@ -1,5 +1,5 @@
 # USRP_for_Raspberrypi
-- Version : V3.10
+- Version : V3.11
 - Updated Date : 2021.10.31
 - Programmed by DS5QDR Lee, Hoenmin
 
