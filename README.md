@@ -72,8 +72,9 @@
 - click here, https://ds5qdr-dv.tistory.com/224
 
 # DS5QDR Lee, Heonmin
-
-![image](https://user-images.githubusercontent.com/64110724/134379674-5fa1f607-64ad-40fb-9909-cfedb49b3076.png)
-![image](https://user-images.githubusercontent.com/64110724/129439515-706fb468-88c0-4ae9-8df7-2b9cf832451a.png)
-![image](https://user-images.githubusercontent.com/64110724/129439571-aaa1a5e0-25fe-4f3e-bad2-e7906a455fa6.png)
+![image](https://user-images.githubusercontent.com/64110724/139769083-80591158-ab74-4c9b-894a-022539d05d08.png)
+![image](https://user-images.githubusercontent.com/64110724/139767788-b128b603-d6a0-4282-9933-1aa0a8bc4c06.png)
+![image](https://user-images.githubusercontent.com/64110724/139768191-90c9b12e-06d7-402c-ade0-124f866f540c.png)
+![image](https://user-images.githubusercontent.com/64110724/139768448-920d5901-2600-4dba-8311-ebd70a48f25a.png)
+![image](https://user-images.githubusercontent.com/64110724/139768977-3315f195-a05b-4229-be9a-9b06479808e8.png)
 
