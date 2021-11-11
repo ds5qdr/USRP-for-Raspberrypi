@@ -13,7 +13,7 @@
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
 # Download Image file of micro SD card 16G
-- click below link and download USRP_V3.1x.zip file (USRP_V3.1x.img)
+- click below link and download USRP_V3.1x.zip 2.5G file (USRP_V3.1x.img 6.5G)
 - https://drive.google.com/file/d/1nekXs6Mt141dU-gst78M28HkrsVRrMgU/view?usp=sharing
 - login ID : pi   
 - password : usrp    
