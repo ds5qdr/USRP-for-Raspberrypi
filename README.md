@@ -12,6 +12,10 @@
 - 2021.01.04 V1.00 : USRP Client Released for Windows
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
+# Download Image file of micro SD card 16G
+- click below link and download USRP_V3.1x.img file
+- https://drive.google.com/file/d/1Ltcxy_Sbg7-q17b7txRFJ96kIlaW6p_h/view?usp=sharing
+
 # How to install 
 - wget http://xlx841ysf.duckdns.org/usrp/usrp_install
 - sudo chmod +x usrp_install
