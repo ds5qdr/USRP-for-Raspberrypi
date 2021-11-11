@@ -13,8 +13,8 @@
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
 # Download Image file of micro SD card 16G
-- click below link and download USRP_V3.1x.img file
-- https://drive.google.com/file/d/1Ltcxy_Sbg7-q17b7txRFJ96kIlaW6p_h/view?usp=sharing
+- click below link and download USRP_V3.1x.zip file (USRP_V3.1x.img)
+- https://drive.google.com/file/d/1nekXs6Mt141dU-gst78M28HkrsVRrMgU/view?usp=sharing
 - login ID : pi   
 - password : usrp    
 - VNC PW : 595959
