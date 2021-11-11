@@ -15,6 +15,9 @@
 # Download Image file of micro SD card 16G
 - click below link and download USRP_V3.1x.img file
 - https://drive.google.com/file/d/1Ltcxy_Sbg7-q17b7txRFJ96kIlaW6p_h/view?usp=sharing
+- login ID : pi   
+- password : usrp    
+- VNC PW : 595959
 
 # How to install 
 - wget http://xlx841ysf.duckdns.org/usrp/usrp_install
