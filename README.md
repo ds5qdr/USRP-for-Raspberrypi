@@ -20,7 +20,7 @@
 - VNC PW : 595959
 
 # How to install 
-- wget http://xlx841ysf.duckdns.org/usrp/usrp_install
+- wget http://usrp.duckdns.org/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
 
