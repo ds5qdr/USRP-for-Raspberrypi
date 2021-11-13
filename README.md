@@ -1,6 +1,6 @@
 # USRP_for_Raspberrypi
-- Version : V3.14
-- Updated Date : 2021.11.10
+- Version : V3.15
+- Updated Date : 2021.11.12
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
@@ -20,7 +20,7 @@
 - VNC PW : 595959
 
 # How to install 
-- wget http://xlx841ysf.duckdns.org/usrp/usrp_install
+- wget http://usrp.duckdns.org/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
 
