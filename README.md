@@ -34,6 +34,7 @@
 - sudo nano /usr/share/alsa/alsa.conf
 - defaults.ctl.card 0 ---> 2
 - defaults.pcm.card 0 ---> 2
+  ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
 
 # Modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt
