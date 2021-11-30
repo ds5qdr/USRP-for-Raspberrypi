@@ -1,42 +1,28 @@
 ######################################################
-SCRIPT_VERSION="upgrade USRP V1.00"                  #
+SCRIPT_VERSION="upgrade USRP V1.10"                  #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="06/06/2021"                             #
+SCRIPT_DATE="11/30/2021"                             #
 ######################################################
 
 clear
 echo
-echo download USRP from github
-cd /home/pi/USRP
-sudo rm -rf /home/pi/USRP/tmp
-git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git tmp
+echo download USRP from repository
+cd /home/pi
+sudo wget -O USRP_new http://usrp.duckdns.org/USRP
 
 echo
 echo copy USRP 
-sudo chmod +x tmp/USRP tmp/usrp_start tmp/usrp_upgrade
+sudo chmod +x USRP_new
 sudo chown pi:pi *
-sudo mv tmp/USRP .
-sudo mv tmp/user_d.csv .
-sudo mv tmp/usrp_start   /home/pi/
-sudo mv tmp/usrp_upgrade /home/pi/
-sudo mv tmp/autostart    /etc/xdg/lxsession/LXDE-pi/
-sudo mv tmp/*.jpg        /home/pi/
-sudo mv tmp/*.desktop    /home/pi/Desktop/
+sudo mv /home/pi/USRP_new /home/pi/USRP/USRP
 
-echo
-echo remove tmp directory 
-sudo rm -rf tmp
-
-echo
-echo change ownership
-cd /home/pi
-sudo chown pi:pi *
 
 echo
 echo kill USRP
 sudo kill `ps -ef | grep "USRP" | grep -v 'grep' | awk '{print $2}'` 
 echo USRP killed
 
+clear
 echo
 echo restart USRP
 /home/pi/usrp_start
