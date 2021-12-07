@@ -6,16 +6,16 @@ SCRIPT_DATE="11/30/2021"                             #
 
 clear
 echo
-echo download USRP from repository
+echo download USRP from github
 cd /home/pi
 sudo wget -O USRP_new http://usrp.duckdns.org/USRP
+sudo rm wget*
 
 echo
 echo copy USRP 
 sudo chmod +x USRP_new
 sudo chown pi:pi *
 sudo mv /home/pi/USRP_new /home/pi/USRP/USRP
-
 
 echo
 echo kill USRP
