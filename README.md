@@ -1,9 +1,10 @@
 # USRP_for_Raspberrypi
-- Version : V3.30
-- Updated Date : 2021.12.16
+- Version : V3.31
+- Updated Date : 2021.12.19
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
+- 2021.12.16 V3.30 : added 5 option choice and fixed bugs
 - 2021.11.29 V3.20 : upgrade some fucntions and fix bugs
 - 2021.10.31 V3.10 : fixed QRZ image download error and simplified
 - 2021.10.09 V3.00 : [MACRO] command added to control DVSwitch Server
