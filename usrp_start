@@ -1,7 +1,7 @@
 ######################################################
-SCRIPT_VERSION="Start USRP V1.10"                    #
+SCRIPT_VERSION="Start USRP V1.00"                    #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="06/06/2021"                             #
+SCRIPT_DATE="25/12/2021"                             #
 ######################################################
 
 if pgrep USRP &> /dev/null ; then sudo killall USRP ; fi
