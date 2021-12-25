@@ -4,10 +4,7 @@ SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
 SCRIPT_DATE="06/06/2021"                             #
 ######################################################
 
-echo kill USRP
-kill `ps -ef | grep 'USRP' | grep -v 'grep' | awk '{print $2}'` 
-echo USRP killed
-
-echo run USRP
+if pgrep USRP &> /dev/null ; then sudo killall USRP ; fi
 cd /home/pi/USRP
 /home/pi/USRP/USRP
+
