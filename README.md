@@ -4,7 +4,7 @@
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
-- 2022.01.01 V3.40 : added LOG BOOK, click callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
+- 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
 - 2021.12.16 V3.30 : added 5 option choice and fixed bugs
 - 2021.11.29 V3.20 : upgrade some fucntions and fix bugs
 - 2021.10.31 V3.10 : fixed QRZ image download error and simplified
