@@ -22,6 +22,7 @@ sudo mv *.desktop    /home/pi/Desktop/
 sudo mv rc.local     /etc/
 sudo mv config.txt   /boot/
 sudo rm README.md usrp_install
+sudo sed -i 's/defaults.ctl.card 0/defaults.ctl.card 2/g'  /usr/share/alsa/alsa.conf
 
 echo
 echo reboot USRP
