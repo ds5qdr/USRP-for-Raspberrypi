@@ -33,7 +33,7 @@
 - sudo apt purge pulseaudio
 
 # Other Audio setting 
-#(install script change below settings automatically)
+# (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
 - defaults.ctl.card 0 ---> 2
 - defaults.pcm.card 0 ---> 2
