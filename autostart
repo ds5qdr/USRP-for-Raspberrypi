@@ -1,9 +1,0 @@
-@lxpanel --profile LXDE-pi
-@pcmanfm --desktop --profile LXDE-pi
-@xscreensaver -no-splash
-@xset s noblank
-@xset s off
-@xset s -dpms
-
-/home/pi/usrp_start
-# /home/pi/dvpi/dvpi

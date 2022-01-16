@@ -14,14 +14,14 @@
 - 2021.01.04 V1.00 : USRP Client Released for Windows
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
-# Download Image file of micro SD 16G
+# Option1] Download Image file of micro SD 16G
 - click below link and download USRP_V3.1x.zip 2.5G file (USRP_V3.1x.img 6.5G)
 - https://drive.google.com/file/d/1nekXs6Mt141dU-gst78M28HkrsVRrMgU/view?usp=sharing
 - login ID : pi   
 - password : usrp    
 - VNC PW : 595959
 
-# How to install 
+# Option 2] How to install manually on Rasberrypi OS (Debian 10)
 - wget http://usrp.duckdns.org/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
@@ -32,11 +32,11 @@
 - to remove Pulseaudio 
 - sudo apt purge pulseaudio
 
-# Other Audio setting
+# Other Audio setting (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
 - defaults.ctl.card 0 ---> 2
 - defaults.pcm.card 0 ---> 2
-  ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
+- ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
 
 # Modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt

@@ -17,7 +17,6 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
-/usr/local/sbin/DVSwitch-startup
-/home/dvswitch/udp_cmd
+cd /home/pi/USRP && /home/pi/USRP/USRP &
 
 exit 0

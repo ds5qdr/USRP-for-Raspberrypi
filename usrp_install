@@ -17,13 +17,14 @@ cd USRP
 sudo chmod +x USRP usrp_start usrp_upgrade usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
-sudo mv usrp_upgrade /home/pi/
-sudo mv usrp_install /home/pi/
 sudo mv *.jpg        /home/pi/
 sudo mv *.desktop    /home/pi/Desktop/
-sudo mv autostart    /etc/xdg/lxsession/LXDE-pi/
+sudo mv rc.local     /etc/
 sudo mv config.txt   /boot/
-sudo rm README.md
+sudo rm README.md usrp_install
+
+sudo sed -i 's/defaults.ctl.card 0/defaults.ctl.card 2/g'  /usr/share/alsa/alsa.conf
+sudo sed -i 's/defaults.pcm.card 0/defaults.pcm.card 2/g'  /usr/share/alsa/alsa.conf
 
 echo
 echo reboot USRP
