@@ -1,14 +1,20 @@
 ######################################################
-SCRIPT_VERSION="upgrade USRP V1.10"                  #
+SCRIPT_VERSION="upgrade USRP V1.20"                  #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="11/30/2021"                             #
+SCRIPT_DATE="01/18/2022"                             #
 ######################################################
 
 clear
 echo
-echo download USRP from github
+echo download USRP from repository
 cd /home/pi
-sudo wget -O USRP_new http://usrp.duckdns.org/USRP
+
+if getconf LONG_BIT | grep '64' &>/dev/null; then
+    wget -O USRP_new http://usrp.duckdns.org/USRP64
+else
+    wget -O USRP_new http://usrp.duckdns.org/USRP
+fi
+
 sudo rm wget*
 
 echo
@@ -22,7 +28,8 @@ echo kill USRP
 sudo kill `ps -ef | grep "USRP" | grep -v 'grep' | awk '{print $2}'` 
 echo USRP killed
 
-clear
+# clear
 echo
 echo restart USRP
 /home/pi/usrp_start
+
