@@ -1,5 +1,9 @@
 # USRP-for-Windows with Logbook
+<<<<<<< HEAD
 - Version : V3.42
+=======
+- Version : V3.41
+>>>>>>> 61917694c1f29998ee0fdf901fe5e2d6997a6e41 
 - Updated Date : 2022.01.01
 - Programmed by DS5QDR Lee, Hoenmin
 
