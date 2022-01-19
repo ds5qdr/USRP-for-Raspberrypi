@@ -1,7 +1,7 @@
 ######################################################
-SCRIPT_VERSION="USRP Install V1.10"                  #
+SCRIPT_VERSION="USRP Install V1.20"                  #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="06/06/2021"                             #
+SCRIPT_DATE="01/18/2022"                             #
 ######################################################
 
 echo
@@ -14,6 +14,15 @@ git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 echo
 echo copy usrp_start usrp_upgrade usrp_install
 cd USRP
+
+echo
+echo download USRP or USRP_64 based on OS_bit
+if getconf LONG_BIT | grep '64' &>/dev/null; then
+    wget -O USRP http://usrp.duckdns.org/USRP64
+else
+    wget -O USRP http://usrp.duckdns.org/USRP
+fi
+
 sudo chmod +x USRP usrp_start usrp_upgrade usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
