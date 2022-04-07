@@ -12,9 +12,9 @@ sudo rm -rf USRP
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo
-echo copy usrp_start usrp_upgrade usrp_install
+echo copy usrp_start usrp_install
 cd USRP
-sudo chmod +x USRP usrp_start usrp_upgrade usrp_install
+sudo chmod +x USRP usrp_start usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
 sudo mv usrp_upgrade /home/pi/
