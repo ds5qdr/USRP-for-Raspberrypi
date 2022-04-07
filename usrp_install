@@ -27,6 +27,7 @@ sudo rm README.md
 
 sudo sed -i 's/defaults.ctl.card 0/defaults.ctl.card 2/g'  /usr/share/alsa/alsa.conf
 sudo sed -i 's/defaults.pcm.card 0/defaults.pcm.card 2/g'  /usr/share/alsa/alsa.conf
+(crontab -u pi -l ; echo "@reboot /home/pi/USRP/USRP &") | crontab -u pi -
 
 echo
 echo reboot USRP
