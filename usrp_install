@@ -23,8 +23,8 @@ else
 fi
 
 echo download user DB
-wget -O user.csv   http://usrp.duckdns.org/user_csv
-wget -O user_d.csv http://usrp.duckdns.org/user_d_csv
+wget -O user.csv   http://usrp.duckdns.org/user.csv
+wget -O user_d.csv http://usrp.duckdns.org/user_d.csv
 
 sudo chmod +x USRP usrp_start usrp_install
 sudo chown pi:pi *
