@@ -4,6 +4,7 @@
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
+- 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
 - 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
 - 2021.12.16 V3.30 : added 5 option choice and fixed bugs
 - 2021.11.29 V3.20 : upgrade some fucntions and fix bugs
@@ -25,6 +26,12 @@
 - wget http://usrp.duckdns.org/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
+
+# Download file USRP or USRP64 manually
+- stop USRP
+- sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP
+- sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP64
+- sudo chmod +x USRP
 
 # Warning
 - Don't install Pulseaudio, it makes R2D2 when Rx/Tx transmit

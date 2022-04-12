@@ -1,7 +1,7 @@
 ######################################################
-SCRIPT_VERSION="USRP Install V1.20"                  #
+SCRIPT_VERSION="USRP Install V1.30"                  #
 SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="01/18/2022"                             #
+SCRIPT_DATE="04/07/2022"                             #
 ######################################################
 
 echo
@@ -12,30 +12,23 @@ sudo rm -rf USRP
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo
-echo copy usrp_start usrp_upgrade usrp_install
+echo copy usrp_start usrp_install
 cd USRP
-
-echo
-echo download USRP or USRP_64 based on OS_bit
-if getconf LONG_BIT | grep '64' &>/dev/null; then
-    wget -O USRP http://usrp.duckdns.org/USRP64
-else
-    wget -O USRP http://usrp.duckdns.org/USRP
-fi
-
-sudo chmod +x USRP usrp_start usrp_upgrade usrp_install
+sudo chmod +x USRP usrp_start usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
+sudo mv usrp_upgrade /home/pi/
+sudo mv usrp_install /home/pi/
 sudo mv *.jpg        /home/pi/
 sudo mv *.desktop    /home/pi/Desktop/
-sudo mv rc.local     /etc/
+sudo cp /boot/config.txt /boot/config.txt.backup
 sudo mv config.txt   /boot/
-sudo rm README.md usrp_install
+sudo rm README.md
 
 sudo sed -i 's/defaults.ctl.card 0/defaults.ctl.card 2/g'  /usr/share/alsa/alsa.conf
 sudo sed -i 's/defaults.pcm.card 0/defaults.pcm.card 2/g'  /usr/share/alsa/alsa.conf
+(crontab -u pi -l ; echo "@reboot /home/pi/USRP/USRP &") | crontab -u pi -
 
 echo
 echo reboot USRP
 sudo reboot
-
