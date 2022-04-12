@@ -12,14 +12,19 @@ sudo rm -rf USRP
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo
-echo copy usrp_start usrp_install
+echo copy USRP and user's DB
 cd /home/pi/USRP
 
+echo download USRP
 if (uname -m) | grep '64' &>/dev/null; then
     wget -O USRP http://usrp.duckdns.org/USRP64
 else
     wget -O USRP http://usrp.duckdns.org/USRP
 fi
+
+echo download user DB
+wget -O user.csv   http://usrp.duckdns.org/user_csv
+wget -O user_d.csv http://usrp.duckdns.org/user_d_csv
 
 sudo chmod +x USRP usrp_start usrp_install
 sudo chown pi:pi *
@@ -38,6 +43,5 @@ sudo sed -i 's/defaults.pcm.card 0/defaults.pcm.card 2/g'  /usr/share/alsa/alsa.
 echo
 echo edit usrp.ini
 sudo nano usrp.ini
-echo 
+echo
 echo reboot USRP
-#sudo reboot
