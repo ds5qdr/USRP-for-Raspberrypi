@@ -12,7 +12,7 @@ sudo rm -rf USRP
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo
-echo copy USRP and user's DB
+echo copy USRP and user DB
 cd /home/pi/USRP
 
 echo download USRP
