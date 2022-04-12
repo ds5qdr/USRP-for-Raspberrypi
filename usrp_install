@@ -13,16 +13,22 @@ git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
 echo
 echo copy usrp_start usrp_install
-cd USRP
+cd /home/pi/USRP
+
+if (uname -m) | grep '64' &>/dev/null; then
+    wget -O USRP http://usrp.duckdns.org/USRP64
+else
+    wget -O USRP http://usrp.duckdns.org/USRP
+fi
+
 sudo chmod +x USRP usrp_start usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
-sudo mv usrp_upgrade /home/pi/
 sudo mv usrp_install /home/pi/
 sudo mv *.jpg        /home/pi/
 sudo mv *.desktop    /home/pi/Desktop/
 sudo cp /boot/config.txt /boot/config.txt.backup
-sudo mv config.txt   /boot/
+#sudo mv config.txt   /boot/
 sudo rm README.md
 
 sudo sed -i 's/defaults.ctl.card 0/defaults.ctl.card 2/g'  /usr/share/alsa/alsa.conf
@@ -30,5 +36,8 @@ sudo sed -i 's/defaults.pcm.card 0/defaults.pcm.card 2/g'  /usr/share/alsa/alsa.
 (crontab -u pi -l ; echo "@reboot /home/pi/USRP/USRP &") | crontab -u pi -
 
 echo
+echo edit usrp.ini
+sudo nano usrp.ini
+echo 
 echo reboot USRP
-sudo reboot
+#sudo reboot
