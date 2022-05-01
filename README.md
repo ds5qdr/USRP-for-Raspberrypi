@@ -1,9 +1,10 @@
 # USRP-for-Windows with Logbook
-- Version : V3.552
-- Updated Date : 2022.04.20
+- Version : V3.56
+- Updated Date : 2022.05.01
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
+- 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
 - 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
 - 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
 - 2021.12.16 V3.30 : added 5 option choice and fixed bugs
