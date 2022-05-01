@@ -35,9 +35,9 @@
 
 # Warning
 - if R2D2 accurs, modify daemon.conf
-   sudo nano /etc/pulse/daemon.conf
-     default-fragments = 5
-     default-fragment-size-msec = 2
+- sudo nano /etc/pulse/daemon.conf
+-     default-fragments = 5
+-     default-fragment-size-msec = 2
 
 another option
 - Don't install Pulseaudio, it makes R2D2 when Rx/Tx transmit
