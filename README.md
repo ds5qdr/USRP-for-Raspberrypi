@@ -16,9 +16,8 @@
 - 2021.01.04 V1.00 : USRP Client Released for Windows
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
-# Option 1] Download Image file of micro SD 16G
-- click below link and download USRP_V3.1x.zip 2.5G file (USRP_V3.1x.img 6.5G)
-- https://drive.google.com/file/d/1nekXs6Mt141dU-gst78M28HkrsVRrMgU/view?usp=sharing
+# Option 1] Download DVSwitch + USRP All-in-one IMG file (micro SD 16G Image)
+- click link to https://ds5qdr-dv.tistory.com/333
 - login ID : pi   
 - password : usrp    
 - VNC PW : 595959
