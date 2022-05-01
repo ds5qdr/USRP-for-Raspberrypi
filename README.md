@@ -34,10 +34,17 @@
 - sudo chmod +x USRP
 
 # Warning
+- if R2D2 accurs, modify daemon.conf
+   sudo nano /etc/pulse/daemon.conf
+     default-fragments = 5
+     default-fragment-size-msec = 2
+
+another option
 - Don't install Pulseaudio, it makes R2D2 when Rx/Tx transmit
 - Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
 - to remove Pulseaudio 
 - sudo apt purge pulseaudio
+
 
 # Other Audio setting (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
