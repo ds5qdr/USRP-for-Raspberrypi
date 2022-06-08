@@ -1,9 +1,10 @@
 # USRP-for-Windows with Logbook
-- Version : V3.54
-- Updated Date : 2022.04.20
+- Version : V3.60
+- Updated Date : 2022.05.01
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
+- 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
 - 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
 - 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
 - 2021.12.16 V3.30 : added 5 option choice and fixed bugs
@@ -15,9 +16,8 @@
 - 2021.01.04 V1.00 : USRP Client Released for Windows
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
-# Option 1] Download Image file of micro SD 16G
-- click below link and download USRP_V3.1x.zip 2.5G file (USRP_V3.1x.img 6.5G)
-- https://drive.google.com/file/d/1nekXs6Mt141dU-gst78M28HkrsVRrMgU/view?usp=sharing
+# Option 1] Download DVSwitch + USRP All-in-one IMG file (micro SD 16G Image)
+- click link to https://ds5qdr-dv.tistory.com/333
 - login ID : pi   
 - password : usrp    
 - VNC PW : 595959
@@ -34,10 +34,17 @@
 - sudo chmod +x USRP
 
 # Warning
+- if R2D2 accurs, modify daemon.conf
+- sudo nano /etc/pulse/daemon.conf
+-     default-fragments = 5
+-     default-fragment-size-msec = 2
+
+another option
 - Don't install Pulseaudio, it makes R2D2 when Rx/Tx transmit
 - Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
 - to remove Pulseaudio 
 - sudo apt purge pulseaudio
+
 
 # Other Audio setting (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
