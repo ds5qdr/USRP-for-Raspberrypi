@@ -1,4 +1,4 @@
-# USRP-for-Windows with Logbook
+# USRP-for-RaspberryPi with Logbook
 - Version : V3.66
 - Updated Date : 2022.07.09
 - Programmed by DS5QDR Lee, Hoenmin
