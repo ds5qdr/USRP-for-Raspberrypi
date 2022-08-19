@@ -44,6 +44,7 @@ another option
 - Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
 - to remove Pulseaudio 
 - sudo apt purge pulseaudio
+- sudo apt autoremove
 
 
 # Other Audio setting (install script change below settings automatically)
