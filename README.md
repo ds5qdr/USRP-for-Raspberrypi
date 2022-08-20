@@ -41,14 +41,14 @@
 # Warning
 - if R2D2 accurs, modify daemon.conf
 - sudo nano /etc/pulse/daemon.conf
--     default-fragments = 5
--     default-fragment-size-msec = 2
+- default-fragments = 5
+- default-fragment-size-msec = 2
 
 
 # Other Audio setting (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
-- defaults.ctl.card 0 ---> 2
-- defaults.pcm.card 0 ---> 2
+- defaults.ctl.card 0 ---> 2 or 1
+- defaults.pcm.card 0 ---> 2 or 1 
 - ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
 
 
