@@ -1,6 +1,6 @@
 # USRP-for-RaspberryPi with Logbook
-- Version : V3.662
-- Updated Date : 2022.07.09
+- Version : V3.665
+- Updated Date : 2022.08.20
 - Programmed by DS5QDR Lee, Hoenmin
 
 # History
