@@ -1,10 +1,11 @@
 # USRP-for-RaspberryPi with Logbook
-- Version : V3.665
-- Updated Date : 2022.08.20
+- Version : V3.70
+- Updated Date : 2022.11.07
 - Programmed by DS5QDR Lee, Hoenmin
 
 
 # History
+- 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
 - 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
 - 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
 - 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
