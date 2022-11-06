@@ -1,9 +1,11 @@
 # USRP-for-RaspberryPi with Logbook
-- Version : V3.66
-- Updated Date : 2022.07.09
+- Version : V3.70
+- Updated Date : 2022.11.07
 - Programmed by DS5QDR Lee, Hoenmin
 
+
 # History
+- 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
 - 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
 - 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
 - 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
@@ -16,16 +18,19 @@
 - 2021.01.04 V1.00 : USRP Client Released for Windows
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
+
 # Option 1] Download DVSwitch + USRP All-in-one IMG file (micro SD 16G Image)
 - click link to https://ds5qdr-dv.tistory.com/333
 - login ID : pi   
 - password : usrp    
-- VNC PW : 595959
+- VNC PW : 595959 or usrp
+
 
 # Option 2] How to install manually on Rasberrypi OS (Debian 10)
 - wget http://usrp.duckdns.org/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
+
 
 # Download file USRP or USRP64 manually
 - stop USRP
@@ -33,24 +38,20 @@
 - sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP64
 - sudo chmod +x USRP
 
+
 # Warning
 - if R2D2 accurs, modify daemon.conf
 - sudo nano /etc/pulse/daemon.conf
--     default-fragments = 5
--     default-fragment-size-msec = 2
-
-another option
-- Don't install Pulseaudio, it makes R2D2 when Rx/Tx transmit
-- Install only Pyaudio, https://github.com/DVSwitch/USRP_Client
-- to remove Pulseaudio 
-- sudo apt purge pulseaudio
+- default-fragments = 5
+- default-fragment-size-msec = 2
 
 
 # Other Audio setting (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
-- defaults.ctl.card 0 ---> 2
-- defaults.pcm.card 0 ---> 2
+- defaults.ctl.card 0 ---> 2 or 1
+- defaults.pcm.card 0 ---> 2 or 1 
 - ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
+
 
 # Modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt
@@ -60,6 +61,7 @@ another option
 - hdmi_mode=87
 - hdmi_cvt 800 480 60 6 0 0 0
 - hdmi_drive=2
+
 
 # how to edit usrp.ini
 - see : http://dvswitch.org/DVSwitch_install.pdf
