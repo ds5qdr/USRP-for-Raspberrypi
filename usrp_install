@@ -6,7 +6,6 @@ SCRIPT_DATE="04/07/2022"                             #
 
 echo
 echo download USRP from github
-clear
 cd /home/pi/
 sudo rm -rf USRP
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
@@ -16,32 +15,21 @@ echo copy USRP and user DB
 cd /home/pi/USRP
 
 echo download USRP
-if (uname -m) | grep '64' &>/dev/null; then
-    wget -O USRP http://usrp.duckdns.org/USRP64
-else
-    wget -O USRP http://usrp.duckdns.org/USRP
-fi
-
-echo download user DB
-wget -O user.csv   http://usrp.duckdns.org/user.csv
-wget -O user_d.csv http://usrp.duckdns.org/user_d.csv
+wget -O USRP          http://usrp.duckdns.org/USRP
+wget -O user.csv      http://usrp.duckdns.org/user.csv
+wget -O /usr/bin/usrp http://usrp.duckdns.org/usrp
 
 sudo chmod +x USRP usrp_start usrp_install
 sudo chown pi:pi *
 sudo mv usrp_start   /home/pi/
 sudo mv usrp_install /home/pi/
-sudo mv *.jpg        /home/pi/
-sudo mv *.desktop    /home/pi/Desktop/
-sudo cp /boot/config.txt /boot/config.txt.backup
-#sudo mv config.txt   /boot/
+sudo mv USRP.jpg     /home/pi/
+sudo mv USRP.desktop /home/pi/Desktop/
 sudo rm README.md
-
-sudo sed -i 's/defaults.ctl.card 0/defaults.ctl.card 2/g'  /usr/share/alsa/alsa.conf
-sudo sed -i 's/defaults.pcm.card 0/defaults.pcm.card 2/g'  /usr/share/alsa/alsa.conf
-(crontab -u pi -l ; echo "@reboot /home/pi/USRP/USRP &") | crontab -u pi -
 
 echo
 echo edit usrp.ini
 sudo nano usrp.ini
+
 echo
 echo reboot USRP
