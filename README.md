@@ -1,10 +1,11 @@
 # USRP-for-RaspberryPi with Logbook
-- Version : V3.74
-- Updated Date : 2022.11.18
+- Version : V3.90
+- Updated Date : 2023.01.30
 - Programmed by DS5QDR Lee, Hoenmin
 
 
 # History
+- 2023.01.30 V3.90 : Simplify USRP Client UI and added Analog Tranceiver Interface
 - 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
 - 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
 - 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
@@ -23,7 +24,7 @@
 - click link to https://ds5qdr-dv.tistory.com/333
 - login ID : pi   
 - password : usrp    
-- VNC PW : 595959 or usrp
+- VNC PW   : usrp
 
 
 # Option 2] How to install manually on Rasberrypi OS (Debian 10)
