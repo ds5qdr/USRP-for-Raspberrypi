@@ -9,7 +9,7 @@
 - 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
 - 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
 - 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
-- 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
+- 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> Callsign_logbook.json
 - 2021.12.16 V3.30 : added 5 option choice and fixed bugs
 - 2021.11.29 V3.20 : upgrade some fucntions and fix bugs
 - 2021.10.31 V3.10 : fixed QRZ image download error and simplified
