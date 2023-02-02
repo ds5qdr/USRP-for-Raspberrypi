@@ -4,37 +4,65 @@ SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
 SCRIPT_DATE="04/07/2022"                             #
 ######################################################
 
-echo ----------------------------------------------
-echo download USRP from github
+echo
+echo ---------------------------------------------------------------------
+echo download USRP settings from Web
+echo ---------------------------------------------------------------------
 cd /home/pi/
 sudo rm -rf USRP
-git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
+sudo rm /usr/bin/usrp
+sudo rm /home/pi/Desktop/USRP.desktop
 
-echo ----------------------------------------------
-echo copy USRP and user DB
+sudo mkdir USRP
+sudo chmod o+x USRP
 cd /home/pi/USRP
 
-echo download USRP
+sudo wget -O user.csv     http://usrp.duckdns.org/usrp_install/user.csv
+sudo wget -O usrp         http://usrp.duckdns.org/usrp_install/usrp
+sudo wget -O USRP.jpg     http://usrp.duckdns.org/usrp_install/USRP.jpg
+sudo wget -O USRP.desktop http://usrp.duckdns.org/usrp_install/USRP.desktop
+sudo wget -O usrp.ini     http://usrp.duckdns.org/usrp_install/usrp.ini
+
+echo
+echo ---------------------------------------------------------------------
+echo download USRP based on Debian version
+echo ---------------------------------------------------------------------
 if (hostnamectl) | grep 'arm64' &>/dev/null; then
-    wget -O USRP http://usrp.duckdns.org/USRP64
+    sudo wget -O USRP http://usrp.duckdns.org/USRP64
 else
-    wget -O USRP http://usrp.duckdns.org/USRP32
+    sudo wget -O USRP http://usrp.duckdns.org/USRP32
 fi
 
-wget -O user.csv      http://usrp.duckdns.org/user.csv
-wget -O /usr/bin/usrp http://usrp.duckdns.org/usrp
-
-sudo chmod +x USRP
-sudo chmod +x /usr/bin/usrp
-
-sudo chown pi:pi *
+echo ---------------------------------------------------------------------
+echo Configuration USRP Environment
+echo ---------------------------------------------------------------------
+sudo chmod +x USRP usrp
+sudo mv usrp /usr/bin/
 sudo mv USRP.jpg     /home/pi/
 sudo mv USRP.desktop /home/pi/Desktop/
-sudo rm README.md
+sudo chown pi:pi *
 
-echo ----------------------------------------------
+echo
+echo ---------------------------------------------------------------------
+echo add screen resolution settings to /boot/config.txt
+echo ---------------------------------------------------------------------
+sudo cp /boot/config.txt /boot/config.txt.backup
+echo ""                                  | sudo tee -a /boot/config.txt
+echo "# USRP Screen resolution settings" | sudo tee -a /boot/config.txt
+echo "hdmi_group=2               "       | sudo tee -a /boot/config.txt
+echo "hdmi_mode=1                "       | sudo tee -a /boot/config.txt
+echo "hdmi_mode=87               "       | sudo tee -a /boot/config.txt
+echo "hdmi_cvt 800 480 60 6 0 0 0"       | sudo tee -a /boot/config.txt
+echo "hdmi_drive=2               "       | sudo tee -a /boot/config.txt
+echo "display_rotate=0           "       | sudo tee -a /boot/config.txt
+echo ---------------------------------------------------------------------
+echo  8 lines are added into /boot/config.txt
+echo
+echo ---------------------------------------------------------------------
 echo edit usrp.ini
-sudo nano usrp.ini
-
-echo ----------------------------------------------
-echo reboot USRP
+echo sudo nano usrp.ini
+echo ---------------------------------------------------------------------
+echo
+echo ---------------------------------------------------------------------
+echo After edit usrp.ini, reboot USRP
+echo sudo reboot
