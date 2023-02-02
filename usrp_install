@@ -4,32 +4,37 @@ SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
 SCRIPT_DATE="04/07/2022"                             #
 ######################################################
 
-echo
+echo ----------------------------------------------
 echo download USRP from github
 cd /home/pi/
 sudo rm -rf USRP
 git clone https://github.com/ds5qdr/USRP-for-Raspberrypi.git USRP
 
-echo
+echo ----------------------------------------------
 echo copy USRP and user DB
 cd /home/pi/USRP
 
 echo download USRP
-wget -O USRP          http://usrp.duckdns.org/USRP
+if (hostnamectl) | grep 'arm64' &>/dev/null; then
+    wget -O USRP http://usrp.duckdns.org/USRP64
+else
+    wget -O USRP http://usrp.duckdns.org/USRP32
+fi
+
 wget -O user.csv      http://usrp.duckdns.org/user.csv
 wget -O /usr/bin/usrp http://usrp.duckdns.org/usrp
 
-sudo chmod +x USRP usrp_start usrp_install
+sudo chmod +x USRP
+sudo chmod +x /usr/bin/usrp
+
 sudo chown pi:pi *
-sudo mv usrp_start   /home/pi/
-sudo mv usrp_install /home/pi/
 sudo mv USRP.jpg     /home/pi/
 sudo mv USRP.desktop /home/pi/Desktop/
 sudo rm README.md
 
-echo
+echo ----------------------------------------------
 echo edit usrp.ini
 sudo nano usrp.ini
 
-echo
+echo ----------------------------------------------
 echo reboot USRP
