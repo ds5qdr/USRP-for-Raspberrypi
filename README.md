@@ -36,9 +36,11 @@
 
 # Download file USRP or USRP64 manually
 - stop USRP
+- cd /home/pi/USRP
 - sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP32 <--- debian 10 Buster or 11 Bullseye 32bit
 - sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP64 <--- Debian 11 Bullseye 64bit
-- sudo chmod +x USRP
+- sudo chmod +x /home/pi/USRP/USRP
+- ./USRP
 
 
 # Warning
