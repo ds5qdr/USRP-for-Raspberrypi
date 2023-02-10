@@ -4,7 +4,7 @@
 - Programmed by DS5QDR Lee, Hoenmin
 
 
-# History
+## History
 - 2023.01.30 V3.90 : Simplify USRP Client UI and added Analog Tranceiver Interface
 - 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
 - 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
@@ -43,21 +43,21 @@
 - ./USRP
 
 
-# Warning
+## Warning
 - if R2D2 accurs, modify daemon.conf
 - sudo nano /etc/pulse/daemon.conf
 - default-fragments = 5
 - default-fragment-size-msec = 2
 
 
-# Other Audio setting (install script change below settings automatically)
+## Other Audio setting (install script change below settings automatically)
 - sudo nano /usr/share/alsa/alsa.conf
 - defaults.ctl.card 0 ---> 2 or 1
 - defaults.pcm.card 0 ---> 2 or 1 
 - ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
 
 
-# Modify /boot/config.txt to match Video resolution
+## Modify /boot/config.txt to match Video resolution
 - sudo nano /boot/config.txt
 - add 5 lines at the end of config.txt
 - hdmi_group=2
@@ -67,15 +67,15 @@
 - hdmi_drive=2
 
 
-# how to edit usrp.ini
+## how to edit usrp.ini
 - see : http://dvswitch.org/DVSwitch_install.pdf
 - Appendix B: pyUC (python USRP Client)
 ![image](https://user-images.githubusercontent.com/64110724/134375327-b36d3c95-b887-4ac5-82a7-c5c620e5acfe.png)
 
-# How to add PTT
+## How to add PTT
 ![image](https://user-images.githubusercontent.com/64110724/152883240-493c3906-e9c3-4d5e-874d-d906b0391a36.png)
 
-# for more information
+## for more information
 - click here, https://ds5qdr-dv.tistory.com/417
 
 # DS5QDR Lee, Heonmin
