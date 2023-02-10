@@ -1,4 +1,4 @@
-# USRP-for-RaspberryPi with Logbook
+## USRP-for-RaspberryPi with Logbook
 - Version : V3.90
 - Updated Date : 2023.01.30
 - Programmed by DS5QDR Lee, Hoenmin
@@ -20,7 +20,7 @@
 - 2020.12.16 V0.95 : pyUC.py compiled to pyUC.exe
 
 
-# Option 1] Download DVSwitch + USRP All-in-one IMG file (micro SD 16G Image)
+## Option 1] Download DVSwitch + USRP All-in-one IMG file (micro SD 16G Image)
 - click link to https://ds5qdr-dv.tistory.com/417
 - see readme.txt
 - login ID : pi   
@@ -28,13 +28,13 @@
 - VNC PW   : usrp
 
 
-# Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
+## Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
 - wget http://usrp.duckdns.org/usrp_install/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
 
 
-# Download file USRP or USRP64 manually
+## Download file USRP or USRP64 manually
 - stop USRP
 - cd /home/pi/USRP
 - sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP32 <--- debian 10 Buster or 11 Bullseye 32bit
