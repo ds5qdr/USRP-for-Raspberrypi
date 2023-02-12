@@ -29,7 +29,7 @@
 
 
 ## Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
-- wget http://usrp.duckdns.org/usrp_install/usrp_install
+- wget http://usrp.duckdns.org/usrp_install
 - sudo chmod +x usrp_install
 - ./usrp_install 
 
