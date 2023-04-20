@@ -17,11 +17,11 @@ sudo mkdir USRP
 sudo chmod o+x USRP
 cd /home/pi/USRP
 
-sudo wget -O user.csv     http://usrp.duckdns.org/usrp_install/user.csv
-sudo wget -O usrp         http://usrp.duckdns.org/usrp_install/usrp
-sudo wget -O USRP.jpg     http://usrp.duckdns.org/usrp_install/USRP.jpg
-sudo wget -O USRP.desktop http://usrp.duckdns.org/usrp_install/USRP.desktop
-sudo wget -O usrp.ini     http://usrp.duckdns.org/usrp_install/usrp.ini
+sudo wget -O user.csv     http://usrp.duckdns.org/usrp_down/user.csv
+sudo wget -O usrp         http://usrp.duckdns.org/usrp_down/usrp
+sudo wget -O USRP.jpg     http://usrp.duckdns.org/usrp_down/USRP.jpg
+sudo wget -O USRP.desktop http://usrp.duckdns.org/usrp_down/USRP.desktop
+sudo wget -O usrp.ini     http://usrp.duckdns.org/usrp_down/usrp.ini
 
 echo
 echo ---------------------------------------------------------------------
