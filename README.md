@@ -85,9 +85,7 @@ hdmi_drive=2
 - click here, https://ds5qdr-dv.tistory.com/417
 
 # DS5QDR Lee, Heonmin
-![image](https://user-images.githubusercontent.com/64110724/139769603-f42fc40e-5d56-472e-b3df-74af970e5c04.png)
-![image](https://user-images.githubusercontent.com/64110724/139767788-b128b603-d6a0-4282-9933-1aa0a8bc4c06.png)
-![image](https://user-images.githubusercontent.com/64110724/139768191-90c9b12e-06d7-402c-ade0-124f866f540c.png)
-![image](https://user-images.githubusercontent.com/64110724/139768448-920d5901-2600-4dba-8311-ebd70a48f25a.png)
-![image](https://user-images.githubusercontent.com/64110724/139768977-3315f195-a05b-4229-be9a-9b06479808e8.png)
-
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/0b59ae81-a592-4c81-8202-145520528d21)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/bfaf874e-59a3-42e2-b3fc-34fa9fb74ba6)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/37ee0966-2e42-4785-9668-c44a7247b773)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/6a3b48a1-25ab-4cdb-9b46-a61067ab5365)
