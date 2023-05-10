@@ -79,7 +79,8 @@ hdmi_drive=2
 ![image](https://user-images.githubusercontent.com/64110724/134375327-b36d3c95-b887-4ac5-82a7-c5c620e5acfe.png)
 
 ## How to add PTT
-![image](https://user-images.githubusercontent.com/64110724/152883240-493c3906-e9c3-4d5e-874d-d906b0391a36.png)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/511b3bea-91da-4884-82ea-112a1feabc0d)
+
 
 ## for more information
 - click here, https://ds5qdr-dv.tistory.com/417
