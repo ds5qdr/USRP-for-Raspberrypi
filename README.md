@@ -47,29 +47,31 @@ sudo chmod +x /home/pi/USRP/USRP
 ```
 
 ## Warning
-- if R2D2 accurs, modify daemon.conf
 ```
-- sudo nano /etc/pulse/daemon.conf
-- default-fragments = 5
-- default-fragment-size-msec = 2
+# if R2D2 accurs, modify daemon.conf
+sudo nano /etc/pulse/daemon.conf
+default-fragments = 5
+default-fragment-size-msec = 2
 ```
 
 ## Other Audio setting (install script change below settings automatically)
-- sudo nano /usr/share/alsa/alsa.conf
-- defaults.ctl.card 0 ---> 2 or 1
-- defaults.pcm.card 0 ---> 2 or 1 
-- ( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
-
+```
+sudo nano /usr/share/alsa/alsa.conf
+defaults.ctl.card 0 ---> 2 or 1
+defaults.pcm.card 0 ---> 2 or 1 
+( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
+```
 
 ## Modify /boot/config.txt to match Video resolution
-- sudo nano /boot/config.txt
-- add 5 lines at the end of config.txt
-- hdmi_group=2
-- hdmi_mode=1
-- hdmi_mode=87
-- hdmi_cvt 800 480 60 6 0 0 0
-- hdmi_drive=2
-
+```
+sudo nano /boot/config.txt
+# add 5 lines at the end of config.txt
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+hdmi_cvt 800 480 60 6 0 0 0
+hdmi_drive=2
+```
 
 ## how to edit usrp.ini
 - see : http://dvswitch.org/DVSwitch_install.pdf
