@@ -85,7 +85,9 @@ hdmi_drive=2
 - click here, https://ds5qdr-dv.tistory.com/417
 
 # DS5QDR Lee, Heonmin
-![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/0b59ae81-a592-4c81-8202-145520528d21)
-![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/bfaf874e-59a3-42e2-b3fc-34fa9fb74ba6)
-![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/37ee0966-2e42-4785-9668-c44a7247b773)
-![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/6a3b48a1-25ab-4cdb-9b46-a61067ab5365)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/c46f33cc-56b9-4e8a-8d44-eb578ba4ad7e)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/c20ed2d1-bf83-45f0-bd3c-8250586a9a7c)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/7fe55ff9-7098-48e6-8d0a-4dbe4f2c1a6f)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/d08105b5-2972-4e05-9ea5-6f5887f45cc4)
+![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/c0c34564-8274-45aa-a1e9-4d27c695422c)
+
