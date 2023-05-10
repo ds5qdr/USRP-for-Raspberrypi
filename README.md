@@ -30,7 +30,6 @@
 
 
 ## Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
-
 ```
 wget http://usrp.duckdns.org/usrp_install
 sudo chmod +x usrp_install
@@ -38,19 +37,15 @@ sudo chmod +x usrp_install
 ```
 
 
-- wget http://usrp.duckdns.org/usrp_install
-- sudo chmod +x usrp_install
-- ./usrp_install 
-
-
 ## Download file USRP or USRP64 manually
 - stop USRP
-- cd /home/pi/USRP
-- sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP32 <--- debian 10 Buster or 11 Bullseye 32bit
-- sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP64 <--- Debian 11 Bullseye 64bit
-- sudo chmod +x /home/pi/USRP/USRP
-- ./USRP
-
+```
+cd /home/pi/USRP
+sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP32 <--- debian 10 Buster or 11 Bullseye 32bit
+sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP64 <--- Debian 11 Bullseye 64bit
+sudo chmod +x /home/pi/USRP/USRP
+./USRP
+```
 
 ## Warning
 - if R2D2 accurs, modify daemon.conf
