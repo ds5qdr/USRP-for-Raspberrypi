@@ -32,10 +32,9 @@
 ## Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
 
 ```
-apt install -y -t bullseye-backports python3-websockets python3-aiohttp
-apt install -y apache2 wget
-wget https://github.com/AllStarLink/Allmon3/releases/download/
-dpkg -i allmon3_
+wget http://usrp.duckdns.org/usrp_install
+sudo chmod +x usrp_install
+./usrp_install 
 ```
 
 
