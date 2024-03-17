@@ -2,6 +2,7 @@
 - Version : V3.951
 - Updated Date : 2023.04.21
 - Programmed by DS5QDR Lee, Hoenmin
+- USRP1132 <--- USRP for debian 11 bullseye 32bit
 
 
 ## History
