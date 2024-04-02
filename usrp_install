@@ -27,11 +27,28 @@ echo
 echo ---------------------------------------------------------------------
 echo download USRP based on Debian version
 echo ---------------------------------------------------------------------
-if (hostnamectl) | grep 'arm64' &>/dev/null; then
-    sudo wget -O USRP http://usrp.duckdns.org/USRP64
+# Check if the output of hostnamectl contains 'bullseye' or 'bookworm'
+if hostnamectl | grep -q -E 'bullseye|bookworm'; then
+    # Check if the output of hostnamectl contains 'arm64'
+    if hostnamectl | grep -q 'arm64'; then
+        USRP="USRP1164"
+    else
+        USRP="USRP1132"
+    fi
+# Check if the output of hostnamectl contains 'buster'
+elif hostnamectl | grep -q 'buster'; then
+    # Check if the output of hostnamectl contains 'arm64'
+    if hostnamectl | grep -q 'arm64'; then
+        USRP="USRP1064"
+    else
+        USRP="USRP1032"
+    fi
 else
-    sudo wget -O USRP http://usrp.duckdns.org/USRP32
+    USRP="USRP1132"  # If none of the conditions match
 fi
+
+echo "USRP Version : $USRP"
+sudo wget -O ~/USRP/USRP dvdown.duckdns.org/program/usrp/$USRP
 
 echo ---------------------------------------------------------------------
 echo Configuration USRP Environment
