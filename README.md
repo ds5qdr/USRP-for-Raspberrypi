@@ -1,12 +1,12 @@
 ## USRP-for-RaspberryPi with Logbook
-- Version : V3.970
-- Updated Date : 2024.03.19
+- Version : V3.972
+- Updated Date : 2024.04.10
 - Programmed by DS5QDR Lee, Hoenmin
 - USRP1132 <--- USRP for debian 11 bullseye 32bit
 
 
 ## History
-- 2024.03.17 V3.968: Fixed bugs and updated
+- 2024.04.10 V3.972: Fixed bugs and updated
 - 2023-04-21 V3.951: fixed bugs and updated
 - 2023.01.30 V3.90 : Simplify USRP Client UI and added Analog Tranceiver Interface
 - 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
@@ -33,35 +33,24 @@
 
 ## Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
 ```
-wget http://usrp.duckdns.org/usrp_install
+wget http://dvdown.duckdns.org/userInfo/program/usrp/usrp_install
 sudo chmod +x usrp_install
 ./usrp_install 
 ```
 
 
-## Download file USRP or USRP64 manually
+## Download file USRP for Debian 11 Bullseye 32bit manually
 ```
 cd /home/pi/USRP
-sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP32 <--- debian 10 Buster or 11 Bullseye 32bit
-sudo wget -O /home/pi/USRP/USRP usrp.duckdns.org/USRP64 <--- Debian 11 Bullseye 64bit
+sudo wget -O ~/USRP/USRP dvdown.duckdns.org/program/usrp//USRP1132 <--- debian 11 Bullseye 32bit
 sudo chmod +x /home/pi/USRP/USRP
 ./USRP
 ```
 
-## Warning
-```
-# if R2D2 accurs, modify daemon.conf
-sudo nano /etc/pulse/daemon.conf
-default-fragments = 5
-default-fragment-size-msec = 2
-```
-
 ## Other Audio setting (install script change below settings automatically)
 ```
-sudo nano /usr/share/alsa/alsa.conf
-defaults.ctl.card 0 ---> 2 or 1
-defaults.pcm.card 0 ---> 2 or 1 
-( aplay -l command show your USB sound card no. whether 0, 1 or 2 )
+see below
+https://ds5qdr-dv.tistory.com/517
 ```
 
 ## Modify /boot/config.txt to match Video resolution
