@@ -10,18 +10,19 @@ echo download USRP settings from Web
 echo ---------------------------------------------------------------------
 cd /home/pi/
 sudo rm -rf USRP
-sudo rm /usr/bin/usrp
+sudo rm /usr/local/usrp
+sudo rm /usr/local/bin/usrp
 sudo rm /home/pi/Desktop/USRP.desktop
 
 sudo mkdir USRP
 sudo chmod o+x USRP
 cd /home/pi/USRP
 
-sudo wget -O user.csv     http://usrp.duckdns.org/usrp_down/user.csv
-sudo wget -O usrp         http://usrp.duckdns.org/usrp_down/usrp
-sudo wget -O USRP.jpg     http://usrp.duckdns.org/usrp_down/USRP.jpg
-sudo wget -O USRP.desktop http://usrp.duckdns.org/usrp_down/USRP.desktop
-sudo wget -O usrp.ini     http://usrp.duckdns.org/usrp_down/usrp.ini
+sudo wget -O user.csv     dvdown.duckdns.org/userInfo/user_data/user.csv
+sudo wget -O usrp         dvdown.duckdns.org/userInfo/program/usrp/usrp
+sudo wget -O USRP.jpg     dvdown.duckdns.org/userInfo/program/usrp/USRP.jpg
+sudo wget -O USRP.desktop dvdown.duckdns.org/userInfo/program/usrp/USRP.desktop
+sudo wget -O usrp.ini     dvdown.duckdns.org/userInfo/program/usrp/usrp.ini
 
 echo
 echo ---------------------------------------------------------------------
@@ -54,7 +55,7 @@ echo ---------------------------------------------------------------------
 echo Configuration USRP Environment
 echo ---------------------------------------------------------------------
 sudo chmod +x USRP usrp
-sudo mv usrp /usr/bin/
+sudo mv usrp         /usr/local/bin/
 sudo mv USRP.jpg     /home/pi/
 sudo mv USRP.desktop /home/pi/Desktop/
 sudo chown pi:pi *
