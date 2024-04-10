@@ -14,8 +14,13 @@ sudo rm /usr/local/usrp
 sudo rm /usr/local/bin/usrp
 sudo rm /home/pi/Desktop/USRP.desktop
 
+wget -O /home/pi/rpi-off.png                dvdown.duckdns.org/rpi/Desktop/rpi-off.png
+wget -O /home/pi/Desktop/rpi-off.desktop    dvdown.duckdns.org/rpi/Desktop/rpi-off.desktop
+wget -O /home/pi/rpi-reboot.png             dvdown.duckdns.org/rpi/Desktop/rpi-reboot.png
+wget -O /home/pi/Desktop/rpi-reboot.desktop dvdown.duckdns.org/rpi/Desktop/rpi-reboot.desktop
+
 sudo mkdir USRP
-sudo chmod o+x USRP
+sudo chown pi:pi USRP
 cd /home/pi/USRP
 
 sudo wget -O user.csv     dvdown.duckdns.org/userInfo/user_data/user.csv
@@ -23,6 +28,7 @@ sudo wget -O usrp         dvdown.duckdns.org/program/usrp/usrp
 sudo wget -O USRP.jpg     dvdown.duckdns.org/program/usrp/USRP.jpg
 sudo wget -O USRP.desktop dvdown.duckdns.org/program/usrp/USRP.desktop
 sudo wget -O usrp.ini     dvdown.duckdns.org/program/usrp/usrp.ini
+
 
 echo
 echo ---------------------------------------------------------------------
@@ -76,6 +82,10 @@ echo "display_rotate=0           "       | sudo tee -a /boot/config.txt
 echo ---------------------------------------------------------------------
 echo  8 lines are added into /boot/config.txt
 echo
+echo ---------------------------------------------------------------------
+echo add auto_start USRP1032
+echo ""                                  | sudo tee -a
+echo "/usr/local/bin/usrp"               | sudo tee -a /etc/xdg/lxsession/LXDE-pi/autostart
 echo ---------------------------------------------------------------------
 echo edit usrp.ini
 echo sudo nano usrp.ini
