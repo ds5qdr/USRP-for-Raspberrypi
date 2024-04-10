@@ -33,7 +33,7 @@
 
 ## Option 2] How to install manually on Rasberrypi OS (Debian 11 Bullseye)
 ```
-wget http://dvdown.duckdns.org/userInfo/program/usrp/usrp_install
+wget http://dvdown.duckdns.org/program/usrp/usrp_install
 sudo chmod +x usrp_install
 ./usrp_install 
 ```
