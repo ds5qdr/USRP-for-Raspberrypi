@@ -3,6 +3,6 @@ Type=Application
 Encoding=UTF-8
 Name=USRP
 Path=/home/pi/USRP
-Exec=/home/pi/USRP/USRP
+Exec=/usr/local/bin/usrp
 Terminal=false
 Icon=/home/pi/USRP.jpg
