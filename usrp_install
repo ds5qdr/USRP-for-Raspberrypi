@@ -19,10 +19,10 @@ sudo chmod o+x USRP
 cd /home/pi/USRP
 
 sudo wget -O user.csv     dvdown.duckdns.org/userInfo/user_data/user.csv
-sudo wget -O usrp         dvdown.duckdns.org/userInfo/program/usrp/usrp
-sudo wget -O USRP.jpg     dvdown.duckdns.org/userInfo/program/usrp/USRP.jpg
-sudo wget -O USRP.desktop dvdown.duckdns.org/userInfo/program/usrp/USRP.desktop
-sudo wget -O usrp.ini     dvdown.duckdns.org/userInfo/program/usrp/usrp.ini
+sudo wget -O usrp         dvdown.duckdns.org/program/usrp/usrp
+sudo wget -O USRP.jpg     dvdown.duckdns.org/program/usrp/USRP.jpg
+sudo wget -O USRP.desktop dvdown.duckdns.org/program/usrp/USRP.desktop
+sudo wget -O usrp.ini     dvdown.duckdns.org/program/usrp/usrp.ini
 
 echo
 echo ---------------------------------------------------------------------
