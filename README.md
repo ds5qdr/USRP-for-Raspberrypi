@@ -48,10 +48,9 @@ sudo chmod +x /home/pi/USRP/USRP
 ```
 
 ## Other Audio setting (install script change below settings automatically)
-```
-see below
-https://ds5qdr-dv.tistory.com/517
-```
+- see below
+- https://ds5qdr-dv.tistory.com/517
+
 
 ## Modify /boot/config.txt to match Video resolution
 ```
