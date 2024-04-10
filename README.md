@@ -31,7 +31,7 @@
 - VNC PW   : usrp
 
 
-## Option 2] How to install manually on Rasberrypi OS (Debian 10 or 11)
+## Option 2] How to install manually on Rasberrypi OS (Debian 11 Bullseye)
 ```
 wget http://dvdown.duckdns.org/userInfo/program/usrp/usrp_install
 sudo chmod +x usrp_install
