@@ -10,34 +10,58 @@ echo download USRP settings from Web
 echo ---------------------------------------------------------------------
 cd /home/pi/
 sudo rm -rf USRP
-sudo rm /usr/bin/usrp
+sudo rm /usr/local/usrp
+sudo rm /usr/local/bin/usrp
 sudo rm /home/pi/Desktop/USRP.desktop
 
+wget -O /home/pi/rpi-off.png                dvdown.duckdns.org/rpi/Desktop/rpi-off.png
+wget -O /home/pi/Desktop/rpi-off.desktop    dvdown.duckdns.org/rpi/Desktop/rpi-off.desktop
+wget -O /home/pi/rpi-reboot.png             dvdown.duckdns.org/rpi/Desktop/rpi-reboot.png
+wget -O /home/pi/Desktop/rpi-reboot.desktop dvdown.duckdns.org/rpi/Desktop/rpi-reboot.desktop
+
 sudo mkdir USRP
-sudo chmod o+x USRP
+sudo chown pi:pi USRP
 cd /home/pi/USRP
 
-sudo wget -O user.csv     http://usrp.duckdns.org/usrp_down/user.csv
-sudo wget -O usrp         http://usrp.duckdns.org/usrp_down/usrp
-sudo wget -O USRP.jpg     http://usrp.duckdns.org/usrp_down/USRP.jpg
-sudo wget -O USRP.desktop http://usrp.duckdns.org/usrp_down/USRP.desktop
-sudo wget -O usrp.ini     http://usrp.duckdns.org/usrp_down/usrp.ini
+sudo wget -O user.csv     dvdown.duckdns.org/userInfo/user_data/user.csv
+sudo wget -O usrp         dvdown.duckdns.org/program/usrp/usrp
+sudo wget -O USRP.jpg     dvdown.duckdns.org/program/usrp/USRP.jpg
+sudo wget -O USRP.desktop dvdown.duckdns.org/program/usrp/USRP.desktop
+sudo wget -O usrp.ini     dvdown.duckdns.org/program/usrp/usrp.ini
+
 
 echo
 echo ---------------------------------------------------------------------
 echo download USRP based on Debian version
 echo ---------------------------------------------------------------------
-if (hostnamectl) | grep 'arm64' &>/dev/null; then
-    sudo wget -O USRP http://usrp.duckdns.org/USRP64
+# Check if the output of hostnamectl contains 'bullseye' or 'bookworm'
+if hostnamectl | grep -q -E 'bullseye|bookworm'; then
+    # Check if the output of hostnamectl contains 'arm64'
+    if hostnamectl | grep -q 'arm64'; then
+        USRP="USRP1164"
+    else
+        USRP="USRP1132"
+    fi
+# Check if the output of hostnamectl contains 'buster'
+elif hostnamectl | grep -q 'buster'; then
+    # Check if the output of hostnamectl contains 'arm64'
+    if hostnamectl | grep -q 'arm64'; then
+        USRP="USRP1064"
+    else
+        USRP="USRP1032"
+    fi
 else
-    sudo wget -O USRP http://usrp.duckdns.org/USRP32
+    USRP="USRP1132"  # If none of the conditions match
 fi
+
+echo "USRP Version : $USRP"
+sudo wget -O ~/USRP/USRP dvdown.duckdns.org/program/usrp/$USRP
 
 echo ---------------------------------------------------------------------
 echo Configuration USRP Environment
 echo ---------------------------------------------------------------------
 sudo chmod +x USRP usrp
-sudo mv usrp /usr/bin/
+sudo mv usrp         /usr/local/bin/
 sudo mv USRP.jpg     /home/pi/
 sudo mv USRP.desktop /home/pi/Desktop/
 sudo chown pi:pi *
@@ -58,6 +82,10 @@ echo "display_rotate=0           "       | sudo tee -a /boot/config.txt
 echo ---------------------------------------------------------------------
 echo  8 lines are added into /boot/config.txt
 echo
+echo ---------------------------------------------------------------------
+echo add auto_start USRP1032
+echo ""                                  | sudo tee -a
+echo "/usr/local/bin/usrp"               | sudo tee -a /etc/xdg/lxsession/LXDE-pi/autostart
 echo ---------------------------------------------------------------------
 echo edit usrp.ini
 echo sudo nano usrp.ini
