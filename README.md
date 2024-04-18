@@ -1,12 +1,12 @@
 ## USRP-for-RaspberryPi with Logbook
-- Version : V3.972
-- Updated Date : 2024.04.10
+- Version : V3.980
+- Updated Date : 2024.04.18
 - Programmed by DS5QDR Lee, Hoenmin
 - USRP1132 <--- USRP for debian 11 bullseye 32bit
 
 
 ## History
-- 2024.04.10 V3.972: Fixed bugs and updated
+- 2024.04.18 V3.980: maybe final version
 - 2023-04-21 V3.951: fixed bugs and updated
 - 2023.01.30 V3.90 : Simplify USRP Client UI and added Analog Tranceiver Interface
 - 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
