@@ -40,6 +40,8 @@ sudo chmod +x usrp_install
 
 ## Download file USRP for Debian 11 Bullseye 32bit manually
 ```
+cd ~
+mkdir USRP
 cd /home/pi/USRP
 sudo wget -O ~/USRP/USRP dvdown.duckdns.org/program/usrp//USRP1132 <--- debian 11 Bullseye 32bit
 sudo chmod +x /home/pi/USRP/USRP
