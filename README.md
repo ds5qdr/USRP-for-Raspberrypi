@@ -1,20 +1,19 @@
 ## USRP-for-RaspberryPi with Logbook
-- Version : V3.980
-- Updated Date : 2024.04.18
-- Programmed by DS5QDR Lee, Hoenmin
+- Version : V4.00
+- Updated Date : 2025.04.08
+- Programmed by DS5QDR Hoenmin Lee in Gimhae, Korea
 - USRP1132 <--- USRP for debian 11 bullseye 32bit
 
 
 ## History
-- 2024.04.18 V3.980: It's probably the final version
-- 2023-04-21 V3.951: fixed bugs and updated
-- 2023.01.30 V3.90 : Simplify USRP Client UI and added Analog Tranceiver Interface
+- 2025-04-08 V4.00 : Final Version. 
+- 2024.03.17 V3.98 : It's probably the final version
+- 2023.04.21 V3.95 : fixed bugs and updated
+- 2023.01.30 V3.90 : Simplify USRP Client UI
 - 2022.11.07 V3.70 : upgraded some fucntions and fixed bugs
-- 2022.04.01 V3.60 : added DTMF fucntion ( option : SA818 module interface )
-- 2022.04.07 V3.50 : USRP is for 32bit, USRP64 is for 64bit OS
-- 2022.01.01 V3.40 : added LOG BOOK, click Callsign at main screen -> Callsign_logbook.json
+- 2022.01.01 V3.40 : added LOG BOOK, click callsign at main screen -> ADD/DEL/ALL -> save to usrp_logbook.json
 - 2021.12.16 V3.30 : added 5 option choice and fixed bugs
-- 2021.11.29 V3.20 : upgrade some fucntions and fix bugs
+- 2021.11.29 V3.20 : one click auto upgrade USRP.exe for Windows version
 - 2021.10.31 V3.10 : fixed QRZ image download error and simplified
 - 2021.10.09 V3.00 : [MACRO] command added to control DVSwitch Server
 - 2021.09.23 V2.95 : [SERVER] section of usrp.ini has changed since V2.95 at as below
@@ -49,7 +48,7 @@ sudo chmod +x /home/pi/USRP/USRP
 
 ## Other Audio setting (install script change below settings automatically)
 - see below
-- https://ds5qdr-dv.tistory.com/517
+- https://ds5qdr-dv.tistory.com/544
 
 
 ## Modify /boot/config.txt to match Video resolution
@@ -72,7 +71,7 @@ hdmi_drive=2
 ![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/bb172318-ce33-43b2-b251-6730a74e615e)
 
 ## for more information
-- click here, https://ds5qdr-dv.tistory.com/417
+- click here, https://ds5qdr-dv.tistory.com/544
 
 # DS5QDR Lee, Heonmin
 ![image](https://github.com/ds5qdr/USRP-for-Raspberrypi/assets/64110724/c46f33cc-56b9-4e8a-8d44-eb578ba4ad7e)
