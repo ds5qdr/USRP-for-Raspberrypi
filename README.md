@@ -23,7 +23,7 @@
 
 
 ## Option 1] Download DVSwitch + USRP All-in-one IMG file (micro SD 16G Image)
-- click link to https://ds5qdr-dv.tistory.com/417
+- click link to https://ds5qdr-dv.tistory.com/544
 - see readme.txt
 - login ID : pi   
 - password : usrp    
