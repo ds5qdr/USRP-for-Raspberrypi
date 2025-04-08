@@ -42,7 +42,7 @@ sudo chmod +x usrp_install
 ```
 cd ~
 mkdir USRP
-cd /home/pi/USRP
+cd USRP
 sudo wget -O ~/USRP/USRP dvdown.duckdns.org/program/usrp//USRP1132 <--- debian 11 Bullseye 32bit
 sudo chmod +x /home/pi/USRP/USRP
 ./USRP
