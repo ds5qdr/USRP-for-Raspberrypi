@@ -14,20 +14,20 @@ sudo rm /usr/local/usrp
 sudo rm /usr/local/bin/usrp
 sudo rm /home/pi/Desktop/USRP.desktop
 
-wget -O /home/pi/rpi-off.png                dvdown.duckdns.org/rpi/Desktop/rpi-off.png
-wget -O /home/pi/Desktop/rpi-off.desktop    dvdown.duckdns.org/rpi/Desktop/rpi-off.desktop
-wget -O /home/pi/rpi-reboot.png             dvdown.duckdns.org/rpi/Desktop/rpi-reboot.png
-wget -O /home/pi/Desktop/rpi-reboot.desktop dvdown.duckdns.org/rpi/Desktop/rpi-reboot.desktop
+wget -O /home/pi/rpi-off.png                dvsw.ddnsfree.com/rpi/Desktop/rpi-off.png
+wget -O /home/pi/Desktop/rpi-off.desktop    dvsw.ddnsfree.com/rpi/Desktop/rpi-off.desktop
+wget -O /home/pi/rpi-reboot.png             dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.png
+wget -O /home/pi/Desktop/rpi-reboot.desktop dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.desktop
 
 sudo mkdir USRP
 sudo chown pi:pi USRP
 cd /home/pi/USRP
 
-sudo wget -O user.csv     dvdown.duckdns.org/userInfo/user_data/user.csv
-sudo wget -O usrp         dvdown.duckdns.org/program/usrp/usrp
-sudo wget -O USRP.jpg     dvdown.duckdns.org/program/usrp/USRP.jpg
-sudo wget -O USRP.desktop dvdown.duckdns.org/program/usrp/USRP.desktop
-sudo wget -O usrp.ini     dvdown.duckdns.org/program/usrp/usrp.ini
+sudo wget -O user.csv     dvsw.ddnsfree.com/userInfo/user_data/user.csv
+sudo wget -O usrp         dvsw.ddnsfree.com/program/usrp/usrp
+sudo wget -O USRP.jpg     dvsw.ddnsfree.com/program/usrp/USRP.jpg
+sudo wget -O USRP.desktop dvsw.ddnsfree.com/program/usrp/USRP.desktop
+sudo wget -O usrp.ini     dvsw.ddnsfree.com/program/usrp/usrp.ini
 
 
 echo
@@ -55,7 +55,7 @@ else
 fi
 
 echo "USRP Version : $USRP"
-sudo wget -O ~/USRP/USRP dvdown.duckdns.org/program/usrp/$USRP
+sudo wget -O ~/USRP/USRP dvsw.ddnsfree.com/program/usrp/$USRP
 
 echo ---------------------------------------------------------------------
 echo Configuration USRP Environment
