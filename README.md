@@ -43,7 +43,7 @@ sudo chmod +x usrp_install
 cd ~
 mkdir USRP
 cd USRP
-sudo wget -O ~/USRP/USRP dvsw.ddnsfree.com/program/usrp//USRP1132 <--- debian 11 Bullseye 32bit
+sudo wget -O ~/USRP/USRP dvsw.ddnsfree.com/program/usrp/USRP1132 <--- debian 11 Bullseye 32bit
 sudo chmod +x /home/pi/USRP/USRP
 ./USRP
 ```
