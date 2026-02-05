@@ -13,21 +13,21 @@ sudo rm -rf USRP
 sudo rm /usr/local/usrp
 sudo rm /usr/local/bin/usrp
 sudo rm /home/pi/Desktop/USRP.desktop
+mkdir /home/pi/config
 
-wget -O /home/pi/rpi-off.png                dvsw.ddnsfree.com/rpi/Desktop/rpi-off.png
+wget -O /home/pi/config/rpi-off.png         dvsw.ddnsfree.com/rpi/Desktop/rpi-off.png
 wget -O /home/pi/Desktop/rpi-off.desktop    dvsw.ddnsfree.com/rpi/Desktop/rpi-off.desktop
-wget -O /home/pi/rpi-reboot.png             dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.png
+wget -O /home/pi/config/rpi-reboot.png      dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.png
 wget -O /home/pi/Desktop/rpi-reboot.desktop dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.desktop
 
 sudo mkdir USRP
 sudo chown pi:pi USRP
 cd /home/pi/USRP
 
-sudo wget -O user.csv     dvsw.ddnsfree.com/userInfo/user_data/user.csv
-sudo wget -O usrp         dvsw.ddnsfree.com/program/usrp/usrp
-sudo wget -O USRP.jpg     dvsw.ddnsfree.com/program/usrp/USRP.jpg
-sudo wget -O USRP.desktop dvsw.ddnsfree.com/program/usrp/USRP.desktop
-sudo wget -O usrp.ini     dvsw.ddnsfree.com/program/usrp/usrp.ini
+sudo wget -O usrp                         dvsw.ddnsfree.com/program/usrp/usrp
+sudo wget -O /home/pi/config/USRP.jpg     dvsw.ddnsfree.com/program/usrp/USRP.jpg
+sudo wget -O USRP.desktop                 dvsw.ddnsfree.com/program/usrp/USRP.desktop
+sudo wget -O usrp.ini                     dvsw.ddnsfree.com/program/usrp/usrp.ini
 
 
 echo
