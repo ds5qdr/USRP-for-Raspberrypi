@@ -35,7 +35,7 @@ echo ---------------------------------------------------------------------
 echo download USRP based on Debian version
 echo ---------------------------------------------------------------------
 # Check if the output of hostnamectl contains 'bullseye' or 'bookworm'
-if hostnamectl | grep -q -E 'bullseye|bookworm'; then
+if hostnamectl | grep -q -E 'bullseye|bookworm|bookworm|trixie'; then
     # Check if the output of hostnamectl contains 'arm64'
     if hostnamectl | grep -q 'arm64'; then
         USRP="USRP1164"
