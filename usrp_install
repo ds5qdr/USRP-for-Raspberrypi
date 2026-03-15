@@ -34,24 +34,18 @@ echo
 echo ---------------------------------------------------------------------
 echo download USRP based on Debian version
 echo ---------------------------------------------------------------------
-# Check if the output of hostnamectl contains 'bullseye' or 'bookworm'
-if hostnamectl | grep -q -E 'bullseye|bookworm|bookworm|trixie'; then
-    # Check if the output of hostnamectl contains 'arm64'
-    if hostnamectl | grep -q 'arm64'; then
-        USRP="USRP1164"
-    else
-        USRP="USRP1132"
-    fi
-# Check if the output of hostnamectl contains 'buster'
-elif hostnamectl | grep -q 'buster'; then
-    # Check if the output of hostnamectl contains 'arm64'
-    if hostnamectl | grep -q 'arm64'; then
-        USRP="USRP1064"
-    else
-        USRP="USRP1032"
-    fi
-else
-    USRP="USRP1132"  # If none of the conditions match
+# Check if the output of hostnamectl contains 'bullseye|bookworm|bookworm|trixie'
+HOSTINFO=$(hostnamectl)
+
+if   echo "$HOSTINFO" | grep -q 'arm64'; then ARCH="64"
+else                                          ARCH="32"
+fi
+
+if   echo "$HOSTINFO" | grep -q 'bullseye'; then USRP="USRP11${ARCH}"
+elif echo "$HOSTINFO" | grep -q 'bookworm'; then USRP="USRP12${ARCH}"
+elif echo "$HOSTINFO" | grep -q 'trixie'  ; then USRP="USRP13${ARCH}"
+elif echo "$HOSTINFO" | grep -q 'buster'  ; then USRP="USRP10${ARCH}"
+else                                             USRP="USRP1132"
 fi
 
 echo "USRP Version : $USRP"
