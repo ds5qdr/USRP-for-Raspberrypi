@@ -1,90 +1,358 @@
-######################################################
-SCRIPT_VERSION="USRP Install V1.30"                  #
-SCRIPT_AUTHOR="DS5QDR Lee, Heonmin"                  #
-SCRIPT_DATE="04/07/2022"                             #
-######################################################
+#!/bin/bash
+#####################################################################
+# USRP Unified Installer
+# Target: Raspberry Pi OS / Debian Buster, Bullseye, Bookworm, Trixie
+# by DS5QDR Heonmin Lee in Gimhae, Korea   ds5qdr@gmail.com
+#####################################################################
 
-echo
-echo ---------------------------------------------------------------------
-echo download USRP settings from Web
-echo ---------------------------------------------------------------------
-cd /home/pi/
-sudo rm -rf USRP
-sudo rm /usr/local/usrp
-sudo rm /usr/local/bin/usrp
-sudo rm /home/pi/Desktop/USRP.desktop
-mkdir /home/pi/config
+set -euo pipefail
 
-wget -O /home/pi/config/rpi-off.png         dvsw.ddnsfree.com/rpi/Desktop/rpi-off.png
-wget -O /home/pi/Desktop/rpi-off.desktop    dvsw.ddnsfree.com/rpi/Desktop/rpi-off.desktop
-wget -O /home/pi/config/rpi-reboot.png      dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.png
-wget -O /home/pi/Desktop/rpi-reboot.desktop dvsw.ddnsfree.com/rpi/Desktop/rpi-reboot.desktop
+SCRIPT_NAME="$(basename "$0")"
+USER_NAME="pi"
+USER_HOME="/home/${USER_NAME}"
+CONFIG_DIR="${USER_HOME}/config"
+USRP_DIR="${USER_HOME}/USRP"
+AUTOSTART_DIR="${USER_HOME}/.config/autostart"
 
-sudo mkdir USRP
-sudo chown pi:pi USRP
+USRP_BIN_URL="http://dvsw.ddnsfree.com/program/usrp/usrp"
+USRP_BASE_URL="http://dvsw.ddnsfree.com/program/usrp"
+
+BOOT_CONFIG=""
+CMDLINE_FILE=""
+OS_CODENAME=""
+OS_VERSION_ID=""
+ARCH_BITS=""
+USRP_VER=""
+
+log() {
+    echo "[INFO] $*"
+}
+
+warn() {
+    echo "[WARN] $*" >&2
+}
+
+err() {
+    echo "[ERROR] $*" >&2
+}
+
+require_root() {
+    if [[ "${EUID}" -ne 0 ]]; then
+        err "This script must be run with root privileges. Example: sudo bash ${SCRIPT_NAME}"
+        exit 1
+    fi
+}
+
+detect_user() {
+    if id "${USER_NAME}" >/dev/null 2>&1; then
+        USER_HOME="$(eval echo "~${USER_NAME}")"
+    else
+        warn "User '${USER_NAME}' was not found. Falling back to the current sudo user."
+        if [[ -n "${SUDO_USER:-}" ]] && id "${SUDO_USER}" >/dev/null 2>&1; then
+            USER_NAME="${SUDO_USER}"
+            USER_HOME="$(eval echo "~${USER_NAME}")"
+        else
+            err "Could not determine a valid non-root user account."
+            exit 1
+        fi
+    fi
+
+    CONFIG_DIR="${USER_HOME}/config"
+    USRP_DIR="${USER_HOME}/USRP"
+    AUTOSTART_DIR="${USER_HOME}/.config/autostart"
+}
+
+detect_os() {
+    if [[ ! -f /etc/os-release ]]; then
+        err "/etc/os-release was not found."
+        exit 1
+    fi
+
+    # shellcheck disable=SC1091
+    source /etc/os-release
+
+    OS_CODENAME="${VERSION_CODENAME:-}"
+    OS_VERSION_ID="${VERSION_ID:-}"
+
+    case "${OS_CODENAME}" in
+        bookworm|trixie)
+            BOOT_CONFIG="/boot/firmware/config.txt"
+            CMDLINE_FILE="/boot/firmware/cmdline.txt"
+            ;;
+        buster|bullseye)
+            BOOT_CONFIG="/boot/config.txt"
+            CMDLINE_FILE="/boot/cmdline.txt"
+            ;;
+        *)
+            warn "Unknown OS codename: ${OS_CODENAME:-unknown}"
+            if [[ -f /boot/firmware/config.txt ]]; then
+                BOOT_CONFIG="/boot/firmware/config.txt"
+                CMDLINE_FILE="/boot/firmware/cmdline.txt"
+            else
+                BOOT_CONFIG="/boot/config.txt"
+                CMDLINE_FILE="/boot/cmdline.txt"
+            fi
+            ;;
+    esac
+
+    if [[ ! -f "${BOOT_CONFIG}" ]]; then
+        err "config.txt was not found: ${BOOT_CONFIG}"
+        exit 1
+    fi
+
+    if [[ ! -f "${CMDLINE_FILE}" ]]; then
+        err "cmdline.txt was not found: ${CMDLINE_FILE}"
+        exit 1
+    fi
+}
+
+detect_arch() {
+    local dpkg_arch
+    dpkg_arch="$(dpkg --print-architecture 2>/dev/null || true)"
+
+    case "${dpkg_arch}" in
+        arm64)
+            ARCH_BITS="64"
+            ;;
+        armhf|armel)
+            ARCH_BITS="32"
+            ;;
+        *)
+            if [[ "$(getconf LONG_BIT 2>/dev/null || echo 32)" == "64" ]]; then
+                ARCH_BITS="64"
+            else
+                ARCH_BITS="32"
+            fi
+            ;;
+    esac
+}
+
+build_usrp_version() {
+    case "${OS_CODENAME}" in
+        trixie)
+            USRP_VER="USRP13${ARCH_BITS}"
+            ;;
+        bookworm)
+            USRP_VER="USRP12${ARCH_BITS}"
+            ;;
+        bullseye)
+            USRP_VER="USRP11${ARCH_BITS}"
+            ;;
+        buster)
+            USRP_VER="USRP10${ARCH_BITS}"
+            ;;
+        *)
+            if [[ -n "${OS_VERSION_ID}" ]]; then
+                USRP_VER="USRP${OS_VERSION_ID%%.*}${ARCH_BITS}"
+            else
+                warn "Could not determine the OS version exactly. Falling back to Bullseye format."
+                USRP_VER="USRP11${ARCH_BITS}"
+            fi
+            ;;
+    esac
+}
+
+install_packages() {
+    log "Updating package lists"
+    apt-get update
+
+    log "Installing required packages"
+    apt-get install -y multitail wget ca-certificates
+
+    # Resolution tools are optional:
+    # - wlr-randr for Wayland / wlroots-based sessions
+    # - xrandr via x11-xserver-utils for X11 sessions
+    apt-get install -y wlr-randr >/dev/null 2>&1 || true
+    apt-get install -y x11-xserver-utils >/dev/null 2>&1 || true
+}
+
+prepare_dirs() {
+    log "Preparing directories"
+    rm -rf /usr/local/bin/usrp
+    mkdir -p "${CONFIG_DIR}" "${USRP_DIR}" "${AUTOSTART_DIR}"
+
+    chown -R "${USER_NAME}:${USER_NAME}" "${CONFIG_DIR}" "${USRP_DIR}" "${USER_HOME}/.config"
+}
+
+download_files() {
+    log "Downloading USRP binaries: ${USRP_VER}"
+
+    wget -qO /usr/local/bin/usrp "${USRP_BIN_URL}"
+    wget -qO "${USRP_DIR}/USRP" "${USRP_BASE_URL}/${USRP_VER}"
+
+    chmod +x /usr/local/bin/usrp "${USRP_DIR}/USRP"
+    chown "${USER_NAME}:${USER_NAME}" "${USRP_DIR}/USRP"
+}
+
+backup_file_once() {
+    local target="$1"
+    local backup="${target}.backup"
+    if [[ ! -f "${backup}" ]]; then
+        cp "${target}" "${backup}"
+    fi
+}
+
+ensure_cmdline_video_arg() {
+    local video_arg="video=HDMI-A-1:800x480M@60D"
+
+    if grep -qF "${video_arg}" "${CMDLINE_FILE}"; then
+        log "The video parameter already exists in cmdline.txt"
+        return
+    fi
+
+    log "Appending forced resolution parameter to cmdline.txt"
+    backup_file_once "${CMDLINE_FILE}"
+    sed -i "1 s|\$| ${video_arg}|" "${CMDLINE_FILE}"
+}
+
+create_start_script() {
+    log "Creating start_usrp.sh"
+
+    cat > "${CONFIG_DIR}/start_usrp.sh" <<'EOF'
+#!/bin/bash
+set -euo pipefail
+
+# Wait for the desktop session to fully initialize
+sleep 7
+
+export HOME="/home/pi"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u pi)}"
+
+# Wayland / wlroots-based environments
+if command -v wlr-randr >/dev/null 2>&1; then
+    wlr-randr --output HDMI-A-1 --mode 800x480 >/dev/null 2>&1 || true
+fi
+
+# X11 environments
+if command -v xrandr >/dev/null 2>&1 && [[ -n "${DISPLAY:-}" ]]; then
+    xrandr --output HDMI-1 --mode 800x480 >/dev/null 2>&1 || true
+    xrandr --output HDMI-2 --mode 800x480 >/dev/null 2>&1 || true
+fi
+
 cd /home/pi/USRP
+exec ./USRP
+EOF
 
-sudo wget -O usrp                         dvsw.ddnsfree.com/program/usrp/usrp
-sudo wget -O /home/pi/config/USRP.jpg     dvsw.ddnsfree.com/program/usrp/USRP.jpg
-sudo wget -O USRP.desktop                 dvsw.ddnsfree.com/program/usrp/USRP.desktop
-sudo wget -O usrp.ini                     dvsw.ddnsfree.com/program/usrp/usrp.ini
+    chmod +x "${CONFIG_DIR}/start_usrp.sh"
+    chown "${USER_NAME}:${USER_NAME}" "${CONFIG_DIR}/start_usrp.sh"
+}
 
+fix_start_script_user_paths() {
+    sed -i "s|/home/pi|${USER_HOME}|g" "${CONFIG_DIR}/start_usrp.sh"
+    sed -i "s|id -u pi|id -u ${USER_NAME}|g" "${CONFIG_DIR}/start_usrp.sh"
+}
 
-echo
-echo ---------------------------------------------------------------------
-echo download USRP based on Debian version
-echo ---------------------------------------------------------------------
-# Check if the output of hostnamectl contains 'bullseye|bookworm|bookworm|trixie'
-HOSTINFO=$(hostnamectl)
+create_desktop_file() {
+    log "Creating autostart desktop entry"
 
-if   echo "$HOSTINFO" | grep -q 'arm64'; then ARCH="64"
-else                                          ARCH="32"
-fi
+    cat > "${AUTOSTART_DIR}/usrp.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=USRP_Auto
+Comment=Start USRP automatically
+Exec=${CONFIG_DIR}/start_usrp.sh
+Terminal=false
+X-GNOME-Autostart-enabled=true
+EOF
 
-if   echo "$HOSTINFO" | grep -q 'bullseye'; then USRP="USRP11${ARCH}"
-elif echo "$HOSTINFO" | grep -q 'bookworm'; then USRP="USRP12${ARCH}"
-elif echo "$HOSTINFO" | grep -q 'trixie'  ; then USRP="USRP13${ARCH}"
-elif echo "$HOSTINFO" | grep -q 'buster'  ; then USRP="USRP10${ARCH}"
-else                                             USRP="USRP1132"
-fi
+    chmod 644 "${AUTOSTART_DIR}/usrp.desktop"
+    chown "${USER_NAME}:${USER_NAME}" "${AUTOSTART_DIR}/usrp.desktop"
+}
 
-echo "USRP Version : $USRP"
-sudo wget -O ~/USRP/USRP dvsw.ddnsfree.com/program/usrp/$USRP
+append_aliases_once() {
+    local bashrc="${USER_HOME}/.bashrc"
 
-echo ---------------------------------------------------------------------
-echo Configuration USRP Environment
-echo ---------------------------------------------------------------------
-sudo chmod +x USRP usrp
-sudo mv usrp         /usr/local/bin/
-sudo mv USRP.jpg     /home/pi/
-sudo mv USRP.desktop /home/pi/Desktop/
-sudo chown pi:pi *
+    if [[ ! -f "${bashrc}" ]]; then
+        touch "${bashrc}"
+        chown "${USER_NAME}:${USER_NAME}" "${bashrc}"
+    fi
 
-echo
-echo ---------------------------------------------------------------------
-echo add screen resolution settings to /boot/config.txt
-echo ---------------------------------------------------------------------
-sudo cp /boot/config.txt /boot/config.txt.backup
-echo ""                                  | sudo tee -a /boot/config.txt
-echo "# USRP Screen resolution settings" | sudo tee -a /boot/config.txt
-echo "hdmi_group=2               "       | sudo tee -a /boot/config.txt
-echo "hdmi_mode=1                "       | sudo tee -a /boot/config.txt
-echo "hdmi_mode=87               "       | sudo tee -a /boot/config.txt
-echo "hdmi_cvt 800 480 60 6 0 0 0"       | sudo tee -a /boot/config.txt
-echo "hdmi_drive=2               "       | sudo tee -a /boot/config.txt
-echo "display_rotate=0           "       | sudo tee -a /boot/config.txt
-echo ---------------------------------------------------------------------
-echo  8 lines are added into /boot/config.txt
-echo
-echo ---------------------------------------------------------------------
-echo add auto_start USRP1032
-echo ""                                  | sudo tee -a
-echo "/usr/local/bin/usrp"               | sudo tee -a /etc/xdg/lxsession/LXDE-pi/autostart
-echo ---------------------------------------------------------------------
-echo edit usrp.ini
-echo sudo nano usrp.ini
-echo ---------------------------------------------------------------------
-echo
-echo ---------------------------------------------------------------------
-echo After edit usrp.ini, reboot USRP
-echo sudo reboot
+    if grep -q "# --- USRP FULL ALIAS ---" "${bashrc}"; then
+        log "Alias block already exists in .bashrc"
+        return
+    fi
+
+    log "Appending aliases to .bashrc"
+
+    cat >> "${bashrc}" <<'EOF'
+
+# --- USRP FULL ALIAS ---
+alias cls='clear'
+alias naba='sudo nano ~/.bashrc'
+alias upba='source ~/.bashrc'
+alias bas='sudo nano ~/.bashrc'
+alias llba='alias -p'
+alias ll='ls -l'
+alias ls='ls --color=auto'
+alias own='sudo chown pi:pi '
+alias 88='sudo reboot'
+alias 66='sudo shutdown -h now'
+alias up='sudo apt update && sudo apt upgrade -y'
+alias nano='sudo nano -l '
+alias ctl='sudo systemctl '
+SP=-----------------------------------------------------------------------
+alias sys='echo $SP && hostnamectl && echo $SP && vcgencmd measure_temp && echo $SP && cat /sys/firmware/devicetree/base/model && echo && echo $SP && df -m && echo $SP && free -m && echo $SP'
+alias s2d="date +'%Y-%m-%d %H:%M:%S' -d "
+DT=$(date -u +%Y-%m-%d.log)
+MM=/var/log/mmdvm/MMDVM_Bridge
+DV=/var/log/dvswitch
+AB=Analog_Bridge.log
+alias mt='multitail $MM-$DT $DV/$AB '
+alias rst='sudo systemctl restart mmdvm_bridge analog_bridge '
+alias mu='/usr/local/dvs/dvsmu'
+alias dv='cd /usr/local/dvs'
+alias dvsh='/opt/MMDVM_Bridge/dvswitch.sh '
+alias naab='sudo nano /opt/Analog_Bridge/Analog_Bridge.ini'
+alias namb='sudo nano /opt/MMDVM_Bridge/MMDVM_Bridge.ini'
+alias nadv='sudo nano /opt/MMDVM_Bridge/DVSwitch.ini'
+alias naus='cd /home/pi/USRP && sudo nano usrp.ini'
+EOF
+
+    chown "${USER_NAME}:${USER_NAME}" "${bashrc}"
+}
+
+fix_alias_paths_for_user() {
+    local bashrc="${USER_HOME}/.bashrc"
+    sed -i "s|pi:pi|${USER_NAME}:${USER_NAME}|g" "${bashrc}"
+    sed -i "s|/home/pi|${USER_HOME}|g" "${bashrc}"
+}
+
+summary() {
+    echo
+    echo "-------------------------------------------------------------"
+    echo "Setup Complete"
+    echo "User        : ${USER_NAME}"
+    echo "Home        : ${USER_HOME}"
+    echo "OS          : ${OS_CODENAME:-unknown} (${OS_VERSION_ID:-unknown})"
+    echo "Architecture: ${ARCH_BITS}-bit"
+    echo "USRP_VER    : ${USRP_VER}"
+    echo "BOOT_CONFIG : ${BOOT_CONFIG}"
+    echo "CMDLINE     : ${CMDLINE_FILE}"
+    echo "-------------------------------------------------------------"
+    echo "A reboot is recommended: sudo reboot"
+    echo "-------------------------------------------------------------"
+    echo
+}
+
+main() {
+    require_root
+    detect_user
+    detect_os
+    detect_arch
+    build_usrp_version
+
+    log "Detected: OS=${OS_CODENAME:-unknown}, VERSION=${OS_VERSION_ID:-unknown}, ARCH=${ARCH_BITS}, USRP=${USRP_VER}"
+
+    install_packages
+    prepare_dirs
+    download_files
+    ensure_cmdline_video_arg
+    create_start_script
+    fix_start_script_user_paths
+    create_desktop_file
+    append_aliases_once
+    fix_alias_paths_for_user
+    summary
+}
+
+main "$@"
