@@ -30,7 +30,7 @@
 - VNC PW   : usrp
 
 
-## Option 2] How to install manually on Rasberrypi OS (Bullseye and Trixie)
+## Option 2] Install manually on Rasberrypi OS (Bullseye and Trixie)
 ## (Bullseye 32bit and Trixie 64bit)
 ```
 wget -O usrp_install http://dvsw.ddnsfree.com/program/usrp/usrp_install
