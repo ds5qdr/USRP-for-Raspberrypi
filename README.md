@@ -32,9 +32,9 @@
 
 ## Option 2] How to install manually on Rasberrypi OS (Debian 11 Bullseye)
 ```
-wget http://dvsw.ddnsfree.com/program/usrp/usrp_install
+wget -O usrp_install http://dvsw.ddnsfree.com/program/usrp/usrp_install
 sudo chmod +x usrp_install
-./usrp_install 
+sudo ./usrp_install 
 ```
 
 
