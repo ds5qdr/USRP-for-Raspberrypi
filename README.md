@@ -30,40 +30,16 @@
 - VNC PW   : usrp
 
 
-## Option 2] Install manually on Rasberrypi OS (Bullseye and Trixie)
-## (Bullseye 32bit and Trixie 64bit)
+## Option 2] Install manually on Rasberrypi OS (Bullseye 32bit and Trixie 64bit)
 ```
 wget -O usrp_install http://dvsw.ddnsfree.com/program/usrp/usrp_install
 sudo chmod +x usrp_install
 sudo ./usrp_install 
 ```
 
-
-## Download file USRP for Debian 11 Bullseye 32bit manually
-```
-cd ~
-mkdir USRP
-cd USRP
-sudo wget -O ~/USRP/USRP dvsw.ddnsfree.com/program/usrp/USRP1132 <--- debian 11 Bullseye 32bit
-sudo chmod +x /home/pi/USRP/USRP
-./USRP
-```
-
 ## Other Audio setting (install script change below settings automatically)
 - see below
 - https://ds5qdr-dv.tistory.com/544
-
-
-## Modify /boot/config.txt to match Video resolution
-```
-sudo nano /boot/config.txt
-# add 5 lines at the end of config.txt
-hdmi_group=2
-hdmi_mode=1
-hdmi_mode=87
-hdmi_cvt 800 480 60 6 0 0 0
-hdmi_drive=2
-```
 
 ## how to edit usrp.ini
 - see : http://dvswitch.org/DVSwitch_install.pdf
