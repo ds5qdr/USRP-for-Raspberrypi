@@ -6,6 +6,7 @@
 
 
 ## History
+- 2026.03.20 V4.099 : Released Debian 13 Trixie Version on RaspberryPi
 - 2025-04-08 V4.00 : Final Version. 
 - 2024.03.17 V3.98 : It's probably the final version
 - 2023.04.21 V3.95 : fixed bugs and updated
