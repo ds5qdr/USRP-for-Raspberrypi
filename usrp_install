@@ -1,21 +1,26 @@
-#!/bin/bash
-#####################################################################
+#!/usr/bin/env bash
+######################################################################
 # USRP Unified Installer
-# Target: Raspberry Pi OS / Debian Buster, Bullseye, Bookworm, Trixie
-# by DS5QDR Heonmin Lee in Gimhae, Korea   ds5qdr@gmail.com
-#####################################################################
+# Target: Raspberry Pi OS Desktop / Buster, Bullseye, Bookworm, Trixie
+# Fixed target: pi user + Desktop edition only
+# Designed by DS5QDR Heonmin Lee in Gimhae, Korea  at 2026.03.21
+######################################################################
 
-set -euo pipefail
+set -Eeuo pipefail
 
-SCRIPT_NAME="$(basename "$0")"
-USER_NAME="pi"
-USER_HOME="/home/${USER_NAME}"
-CONFIG_DIR="${USER_HOME}/config"
-USRP_DIR="${USER_HOME}/USRP"
-AUTOSTART_DIR="${USER_HOME}/.config/autostart"
+clear
 
-USRP_BIN_URL="http://dvsw.ddnsfree.com/program/usrp/usrp"
-USRP_BASE_URL="http://dvsw.ddnsfree.com/program/usrp"
+readonly SCRIPT_NAME="$(basename "$0")"
+readonly USER_NAME="pi"
+readonly USER_HOME="/home/pi"
+readonly CONFIG_DIR="${USER_HOME}/config"
+readonly USRP_DIR="${USER_HOME}/USRP"
+readonly AUTOSTART_DIR="${USER_HOME}/.config/autostart"
+readonly DESKTOP_DIR="${USER_HOME}/Desktop"
+
+readonly USRP_BIN_URL="http://dvsw.ddnsfree.com/program/usrp/usrp"
+readonly USRP_BASE_URL="http://dvsw.ddnsfree.com/program/usrp"
+readonly ASSET_BASE_URL="http://dvsw.ddnsfree.com"
 
 BOOT_CONFIG=""
 CMDLINE_FILE=""
@@ -24,49 +29,32 @@ OS_VERSION_ID=""
 ARCH_BITS=""
 USRP_VER=""
 
-log() {
-    echo "[INFO] $*"
-}
+log()  { printf '[INFO] %s\n' "$*"; }
+warn() { printf '[WARN] %s\n' "$*" >&2; }
+err()  { printf '[ERROR] %s\n' "$*" >&2; }
 
-warn() {
-    echo "[WARN] $*" >&2
-}
-
-err() {
-    echo "[ERROR] $*" >&2
+die() {
+    err "$*"
+    exit 1
 }
 
 require_root() {
-    if [[ "${EUID}" -ne 0 ]]; then
-        err "This script must be run with root privileges. Example: sudo bash ${SCRIPT_NAME}"
-        exit 1
-    fi
+    [[ "${EUID}" -eq 0 ]] || die "Run as root. Example: sudo bash ${SCRIPT_NAME}"
 }
 
-detect_user() {
-    if id "${USER_NAME}" >/dev/null 2>&1; then
-        USER_HOME="$(eval echo "~${USER_NAME}")"
-    else
-        warn "User '${USER_NAME}' was not found. Falling back to the current sudo user."
-        if [[ -n "${SUDO_USER:-}" ]] && id "${SUDO_USER}" >/dev/null 2>&1; then
-            USER_NAME="${SUDO_USER}"
-            USER_HOME="$(eval echo "~${USER_NAME}")"
-        else
-            err "Could not determine a valid non-root user account."
-            exit 1
-        fi
-    fi
+require_pi_user() {
+    id "${USER_NAME}" >/dev/null 2>&1 || die "User 'pi' does not exist."
+    [[ -d "${USER_HOME}" ]] || die "Home directory not found: ${USER_HOME}"
+}
 
-    CONFIG_DIR="${USER_HOME}/config"
-    USRP_DIR="${USER_HOME}/USRP"
-    AUTOSTART_DIR="${USER_HOME}/.config/autostart"
+require_desktop_environment() {
+    if [[ ! -d "${DESKTOP_DIR}" ]]; then
+        die "Desktop environment not detected. This installer is for Raspberry Pi OS Desktop only."
+    fi
 }
 
 detect_os() {
-    if [[ ! -f /etc/os-release ]]; then
-        err "/etc/os-release was not found."
-        exit 1
-    fi
+    [[ -f /etc/os-release ]] || die "/etc/os-release not found."
 
     # shellcheck disable=SC1091
     source /etc/os-release
@@ -75,35 +63,21 @@ detect_os() {
     OS_VERSION_ID="${VERSION_ID:-}"
 
     case "${OS_CODENAME}" in
-        bookworm|trixie)
-            BOOT_CONFIG="/boot/firmware/config.txt"
-            CMDLINE_FILE="/boot/firmware/cmdline.txt"
-            ;;
         buster|bullseye)
             BOOT_CONFIG="/boot/config.txt"
             CMDLINE_FILE="/boot/cmdline.txt"
             ;;
+        bookworm|trixie)
+            BOOT_CONFIG="/boot/firmware/config.txt"
+            CMDLINE_FILE="/boot/firmware/cmdline.txt"
+            ;;
         *)
-            warn "Unknown OS codename: ${OS_CODENAME:-unknown}"
-            if [[ -f /boot/firmware/config.txt ]]; then
-                BOOT_CONFIG="/boot/firmware/config.txt"
-                CMDLINE_FILE="/boot/firmware/cmdline.txt"
-            else
-                BOOT_CONFIG="/boot/config.txt"
-                CMDLINE_FILE="/boot/cmdline.txt"
-            fi
+            die "Unsupported OS codename: ${OS_CODENAME:-unknown}. Supported: buster, bullseye, bookworm, trixie"
             ;;
     esac
 
-    if [[ ! -f "${BOOT_CONFIG}" ]]; then
-        err "config.txt was not found: ${BOOT_CONFIG}"
-        exit 1
-    fi
-
-    if [[ ! -f "${CMDLINE_FILE}" ]]; then
-        err "cmdline.txt was not found: ${CMDLINE_FILE}"
-        exit 1
-    fi
+    [[ -f "${BOOT_CONFIG}" ]] || die "Missing boot config: ${BOOT_CONFIG}"
+    [[ -f "${CMDLINE_FILE}" ]] || die "Missing cmdline file: ${CMDLINE_FILE}"
 }
 
 detect_arch() {
@@ -111,12 +85,8 @@ detect_arch() {
     dpkg_arch="$(dpkg --print-architecture 2>/dev/null || true)"
 
     case "${dpkg_arch}" in
-        arm64)
-            ARCH_BITS="64"
-            ;;
-        armhf|armel)
-            ARCH_BITS="32"
-            ;;
+        arm64) ARCH_BITS="64" ;;
+        armhf|armel) ARCH_BITS="32" ;;
         *)
             if [[ "$(getconf LONG_BIT 2>/dev/null || echo 32)" == "64" ]]; then
                 ARCH_BITS="64"
@@ -129,123 +99,153 @@ detect_arch() {
 
 build_usrp_version() {
     case "${OS_CODENAME}" in
-        trixie)
-            USRP_VER="USRP13${ARCH_BITS}"
-            ;;
-        bookworm)
-            USRP_VER="USRP12${ARCH_BITS}"
-            ;;
-        bullseye)
-            USRP_VER="USRP11${ARCH_BITS}"
-            ;;
-        buster)
-            USRP_VER="USRP10${ARCH_BITS}"
-            ;;
-        *)
-            if [[ -n "${OS_VERSION_ID}" ]]; then
-                USRP_VER="USRP${OS_VERSION_ID%%.*}${ARCH_BITS}"
-            else
-                warn "Could not determine the OS version exactly. Falling back to Bullseye format."
-                USRP_VER="USRP11${ARCH_BITS}"
-            fi
-            ;;
+        buster)   USRP_VER="USRP10${ARCH_BITS}" ;;
+        bullseye) USRP_VER="USRP11${ARCH_BITS}" ;;
+        bookworm) USRP_VER="USRP12${ARCH_BITS}" ;;
+        trixie)   USRP_VER="USRP13${ARCH_BITS}" ;;
+        *) die "Failed to build USRP version string." ;;
     esac
 }
 
-install_packages() {
+apt_install() {
+    apt-get install -y "$@"
+}
+
+apt_install_optional() {
+    apt-get install -y "$@" >/dev/null 2>&1 || true
+}
+
+prepare_system() {
     log "Updating package lists"
     apt-get update
 
     log "Installing required packages"
-    apt-get install -y multitail wget ca-certificates
+    apt_install wget ca-certificates multitail
 
-    # Resolution tools are optional:
-    # - wlr-randr for Wayland / wlroots-based sessions
-    # - xrandr via x11-xserver-utils for X11 sessions
-    apt-get install -y wlr-randr >/dev/null 2>&1 || true
-    apt-get install -y x11-xserver-utils >/dev/null 2>&1 || true
+    log "Installing optional display tools"
+    apt_install_optional wlr-randr
+    apt_install_optional x11-xserver-utils
+
+    log "Removing optional virtual keyboard packages if present"
+    apt-get purge -y squeekboard wvkbd >/dev/null 2>&1 || true
+
+    log "Stopping cups-browsed if present"
+    systemctl stop cups-browsed >/dev/null 2>&1 || true
+    systemctl disable cups-browsed >/dev/null 2>&1 || true
 }
 
-prepare_dirs() {
+prepare_directories() {
     log "Preparing directories"
-    rm -rf /usr/local/bin/usrp
-    mkdir -p "${CONFIG_DIR}" "${USRP_DIR}" "${AUTOSTART_DIR}"
 
-    chown -R "${USER_NAME}:${USER_NAME}" "${CONFIG_DIR}" "${USRP_DIR}" "${USER_HOME}/.config"
+    rm -f /usr/local/bin/usrp
+    mkdir -p "${CONFIG_DIR}" "${USRP_DIR}" "${AUTOSTART_DIR}" "${DESKTOP_DIR}"
+
+    chown -R "${USER_NAME}:${USER_NAME}" \
+        "${CONFIG_DIR}" \
+        "${USRP_DIR}" \
+        "${AUTOSTART_DIR}" \
+        "${DESKTOP_DIR}"
 }
 
-download_files() {
-    log "Downloading USRP binaries: ${USRP_VER}"
+download_file() {
+    local url="$1"
+    local dest="$2"
 
-    wget -qO /usr/local/bin/usrp "${USRP_BIN_URL}"
-    wget -qO "${USRP_DIR}/USRP" "${USRP_BASE_URL}/${USRP_VER}"
+    mkdir -p "$(dirname "$dest")"
+    wget -qO "$dest" "$url"
+}
+
+download_if_missing() {
+    local url="$1"
+    local dest="$2"
+
+    if [[ -f "$dest" ]]; then
+        log "Keeping existing file: $dest"
+        return
+    fi
+
+    download_file "$url" "$dest"
+}
+
+download_assets() {
+    log "Downloading desktop assets"
+    download_file "${ASSET_BASE_URL}/rpi/Desktop/rpi-off.png"         "${CONFIG_DIR}/rpi-off.png"
+    download_file "${ASSET_BASE_URL}/rpi/Desktop/rpi-reboot.png"      "${CONFIG_DIR}/rpi-reboot.png"
+    download_file "${ASSET_BASE_URL}/program/usrp/USRP.jpg"           "${CONFIG_DIR}/USRP.jpg"
+
+    download_file "${ASSET_BASE_URL}/rpi/Desktop/rpi-off.desktop"     "${DESKTOP_DIR}/rpi-off.desktop"
+    download_file "${ASSET_BASE_URL}/rpi/Desktop/rpi-reboot.desktop"  "${DESKTOP_DIR}/rpi-reboot.desktop"
+    download_file "${ASSET_BASE_URL}/program/usrp/USRP.desktop"       "${DESKTOP_DIR}/USRP.desktop"
+
+    log "Downloading launcher and USRP binary: ${USRP_VER}"
+    download_file "${USRP_BIN_URL}" "/usr/local/bin/usrp"
+    download_file "${USRP_BASE_URL}/${USRP_VER}" "${USRP_DIR}/USRP"
 
     chmod +x /usr/local/bin/usrp "${USRP_DIR}/USRP"
-    chown "${USER_NAME}:${USER_NAME}" "${USRP_DIR}/USRP"
+
+    log "Downloading default config if needed"
+    download_if_missing "${ASSET_BASE_URL}/program/usrp/usrp.ini" "${USRP_DIR}/usrp.ini"
+
+    chown -R "${USER_NAME}:${USER_NAME}" "${CONFIG_DIR}" "${USRP_DIR}" "${DESKTOP_DIR}"
 }
 
 backup_file_once() {
     local target="$1"
     local backup="${target}.backup"
-    if [[ ! -f "${backup}" ]]; then
-        cp "${target}" "${backup}"
-    fi
+
+    [[ -f "$backup" ]] || cp "$target" "$backup"
 }
 
 ensure_cmdline_video_arg() {
     local video_arg="video=HDMI-A-1:800x480M@60D"
 
     if grep -qF "${video_arg}" "${CMDLINE_FILE}"; then
-        log "The video parameter already exists in cmdline.txt"
+        log "cmdline.txt already contains video parameter"
         return
     fi
 
-    log "Appending forced resolution parameter to cmdline.txt"
+    log "Appending video parameter to cmdline.txt"
     backup_file_once "${CMDLINE_FILE}"
     sed -i "1 s|\$| ${video_arg}|" "${CMDLINE_FILE}"
 }
 
 create_start_script() {
-    log "Creating start_usrp.sh"
+    local script_path="${CONFIG_DIR}/start_usrp.sh"
 
-    cat > "${CONFIG_DIR}/start_usrp.sh" <<'EOF'
-#!/bin/bash
-set -euo pipefail
+    log "Creating start script"
 
-# Wait for the desktop session to fully initialize
+    cat > "${script_path}" <<EOF
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
 sleep 7
 
-export HOME="/home/pi"
-export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u pi)}"
+export HOME="${USER_HOME}"
+export XDG_RUNTIME_DIR="\${XDG_RUNTIME_DIR:-/run/user/\$(id -u ${USER_NAME})}"
 
-# Wayland / wlroots-based environments
 if command -v wlr-randr >/dev/null 2>&1; then
     wlr-randr --output HDMI-A-1 --mode 800x480 >/dev/null 2>&1 || true
 fi
 
-# X11 environments
-if command -v xrandr >/dev/null 2>&1 && [[ -n "${DISPLAY:-}" ]]; then
+if command -v xrandr >/dev/null 2>&1 && [[ -n "\${DISPLAY:-}" ]]; then
     xrandr --output HDMI-1 --mode 800x480 >/dev/null 2>&1 || true
     xrandr --output HDMI-2 --mode 800x480 >/dev/null 2>&1 || true
 fi
 
-cd /home/pi/USRP
+cd "${USRP_DIR}"
 exec ./USRP
 EOF
 
-    chmod +x "${CONFIG_DIR}/start_usrp.sh"
-    chown "${USER_NAME}:${USER_NAME}" "${CONFIG_DIR}/start_usrp.sh"
+    chmod +x "${script_path}"
+    chown "${USER_NAME}:${USER_NAME}" "${script_path}"
 }
 
-fix_start_script_user_paths() {
-    sed -i "s|/home/pi|${USER_HOME}|g" "${CONFIG_DIR}/start_usrp.sh"
-    sed -i "s|id -u pi|id -u ${USER_NAME}|g" "${CONFIG_DIR}/start_usrp.sh"
-}
+create_autostart_entry() {
+    local desktop_file="${AUTOSTART_DIR}/usrp.desktop"
 
-create_desktop_file() {
-    log "Creating autostart desktop entry"
+    log "Creating autostart entry"
 
-    cat > "${AUTOSTART_DIR}/usrp.desktop" <<EOF
+    cat > "${desktop_file}" <<EOF
 [Desktop Entry]
 Type=Application
 Name=USRP_Auto
@@ -255,26 +255,24 @@ Terminal=false
 X-GNOME-Autostart-enabled=true
 EOF
 
-    chmod 644 "${AUTOSTART_DIR}/usrp.desktop"
-    chown "${USER_NAME}:${USER_NAME}" "${AUTOSTART_DIR}/usrp.desktop"
+    chmod 644 "${desktop_file}"
+    chown "${USER_NAME}:${USER_NAME}" "${desktop_file}"
 }
 
 append_aliases_once() {
     local bashrc="${USER_HOME}/.bashrc"
 
-    if [[ ! -f "${bashrc}" ]]; then
-        touch "${bashrc}"
-        chown "${USER_NAME}:${USER_NAME}" "${bashrc}"
-    fi
+    [[ -f "${bashrc}" ]] || touch "${bashrc}"
 
     if grep -q "# --- USRP FULL ALIAS ---" "${bashrc}"; then
         log "Alias block already exists in .bashrc"
+        chown "${USER_NAME}:${USER_NAME}" "${bashrc}"
         return
     fi
 
     log "Appending aliases to .bashrc"
 
-    cat >> "${bashrc}" <<'EOF'
+    cat >> "${bashrc}" <<EOF
 
 # --- USRP FULL ALIAS ---
 alias cls='clear'
@@ -284,20 +282,20 @@ alias bas='sudo nano ~/.bashrc'
 alias llba='alias -p'
 alias ll='ls -l'
 alias ls='ls --color=auto'
-alias own='sudo chown pi:pi '
+alias own='sudo chown ${USER_NAME}:${USER_NAME} '
 alias 88='sudo reboot'
 alias 66='sudo shutdown -h now'
 alias up='sudo apt update && sudo apt upgrade -y'
 alias nano='sudo nano -l '
 alias ctl='sudo systemctl '
 SP=-----------------------------------------------------------------------
-alias sys='echo $SP && hostnamectl && echo $SP && vcgencmd measure_temp && echo $SP && cat /sys/firmware/devicetree/base/model && echo && echo $SP && df -m && echo $SP && free -m && echo $SP'
+alias sys='echo \$SP && hostnamectl && echo \$SP && vcgencmd measure_temp && echo \$SP && cat /sys/firmware/devicetree/base/model && echo && echo \$SP && df -m && echo \$SP && free -m && echo \$SP'
 alias s2d="date +'%Y-%m-%d %H:%M:%S' -d "
-DT=$(date -u +%Y-%m-%d.log)
+DT=\$(date -u +%Y-%m-%d.log)
 MM=/var/log/mmdvm/MMDVM_Bridge
 DV=/var/log/dvswitch
 AB=Analog_Bridge.log
-alias mt='multitail $MM-$DT $DV/$AB '
+alias mt='multitail \$MM-\$DT \$DV/\$AB '
 alias rst='sudo systemctl restart mmdvm_bridge analog_bridge '
 alias mu='/usr/local/dvs/dvsmu'
 alias dv='cd /usr/local/dvs'
@@ -305,54 +303,49 @@ alias dvsh='/opt/MMDVM_Bridge/dvswitch.sh '
 alias naab='sudo nano /opt/Analog_Bridge/Analog_Bridge.ini'
 alias namb='sudo nano /opt/MMDVM_Bridge/MMDVM_Bridge.ini'
 alias nadv='sudo nano /opt/MMDVM_Bridge/DVSwitch.ini'
-alias naus='cd /home/pi/USRP && sudo nano usrp.ini'
+alias naus='cd ${USRP_DIR} && sudo nano usrp.ini'
 EOF
 
     chown "${USER_NAME}:${USER_NAME}" "${bashrc}"
 }
 
-fix_alias_paths_for_user() {
-    local bashrc="${USER_HOME}/.bashrc"
-    sed -i "s|pi:pi|${USER_NAME}:${USER_NAME}|g" "${bashrc}"
-    sed -i "s|/home/pi|${USER_HOME}|g" "${bashrc}"
-}
+print_summary() {
+    cat <<EOF
 
-summary() {
-    echo
-    echo "-------------------------------------------------------------"
-    echo "Setup Complete"
-    echo "User        : ${USER_NAME}"
-    echo "Home        : ${USER_HOME}"
-    echo "OS          : ${OS_CODENAME:-unknown} (${OS_VERSION_ID:-unknown})"
-    echo "Architecture: ${ARCH_BITS}-bit"
-    echo "USRP_VER    : ${USRP_VER}"
-    echo "BOOT_CONFIG : ${BOOT_CONFIG}"
-    echo "CMDLINE     : ${CMDLINE_FILE}"
-    echo "-------------------------------------------------------------"
-    echo "A reboot is recommended: sudo reboot"
-    echo "-------------------------------------------------------------"
-    echo
+-------------------------------------------------------------
+Setup Complete
+User        : ${USER_NAME}
+Home        : ${USER_HOME}
+OS          : ${OS_CODENAME} (${OS_VERSION_ID})
+Architecture: ${ARCH_BITS}-bit
+USRP_VER    : ${USRP_VER}
+BOOT_CONFIG : ${BOOT_CONFIG}
+CMDLINE     : ${CMDLINE_FILE}
+-------------------------------------------------------------
+Reboot recommended: sudo reboot
+-------------------------------------------------------------
+
+EOF
 }
 
 main() {
     require_root
-    detect_user
+    require_pi_user
+    require_desktop_environment
     detect_os
     detect_arch
     build_usrp_version
 
-    log "Detected: OS=${OS_CODENAME:-unknown}, VERSION=${OS_VERSION_ID:-unknown}, ARCH=${ARCH_BITS}, USRP=${USRP_VER}"
+    log "Detected OS=${OS_CODENAME}, VERSION=${OS_VERSION_ID}, ARCH=${ARCH_BITS}, USRP=${USRP_VER}"
 
-    install_packages
-    prepare_dirs
-    download_files
+    prepare_system
+    prepare_directories
+    download_assets
     ensure_cmdline_video_arg
     create_start_script
-    fix_start_script_user_paths
-    create_desktop_file
+    create_autostart_entry
     append_aliases_once
-    fix_alias_paths_for_user
-    summary
+    print_summary
 }
 
 main "$@"
