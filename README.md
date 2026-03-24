@@ -31,14 +31,15 @@
 - VNC PW   : usrp
 
 
-## Option 2] Install manually on Rasberrypi OS (Bullseye 32bit and Trixie 64bit)
+## Option 2] Install manually on Rasberrypi OS ( Debina 13 Trixie 64bit)
+- see below
+- https://ds5qdr-dv.tistory.com/589
 ```
 wget -O usrp_install http://dvsw.ddnsfree.com/program/usrp/usrp_install
 sudo chmod +x usrp_install
 sudo ./usrp_install 
 ```
-- see below
-- https://ds5qdr-dv.tistory.com/589
+
 
 ## Other Audio setting (install script change below settings automatically)
 - see below
